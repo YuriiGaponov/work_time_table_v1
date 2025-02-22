@@ -24,9 +24,8 @@ def get_day(day: Tag) -> int:
 def main():
     """Главная функция парсера."""
     soup = get_soup(MAIN_URL)
-    month_table = get_month_table(soup)
     year = get_year(soup)
-    for month in month_table:
+    for month in get_month_table(soup):
         month_title = get_month(month)
         for day in get_days_tag(month):
             if DAY_PATTERN.match(day.text):
