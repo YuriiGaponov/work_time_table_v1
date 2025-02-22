@@ -1,14 +1,10 @@
-import requests
-from bs4 import BeautifulSoup
-
 from constants import MAIN_URL
+from utils import get_soup
 
 
 def main():
     """Главная функция парсера."""
-    session = requests.Session()
-    response = session.get(MAIN_URL)
-    soup = BeautifulSoup(response.text, 'lxml')
+    soup = get_soup(MAIN_URL)
     print(soup)
 
 
