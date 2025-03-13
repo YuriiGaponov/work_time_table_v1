@@ -2,7 +2,8 @@ import re
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 
-from constants import DAY_PATTERN, DAY_INDEX_PATTERN, MAIN_URL, YEAR_PATTERN
+from constants import (DAY_PATTERN, DAY_INDEX_PATTERN, MAIN_URL, YEAR_PATTERN,
+                       WEEKEND_PATTERN)
 from utils import get_days_tag, get_month_table, get_soup
 
 
@@ -21,6 +22,11 @@ def get_day(day: Tag) -> int:
     return int(re.search(DAY_INDEX_PATTERN, day.text).group('day'))
 
 
+def is_weekend(day: Tag) -> bool:
+    """Возращает True, если день является выходным или праздничным."""
+    return WEEKEND_PATTERN in day['class']
+
+
 def main():
     """Главная функция парсера."""
     soup = get_soup(MAIN_URL)
@@ -29,7 +35,7 @@ def main():
         month_title = get_month(month)
         for day in get_days_tag(month):
             if DAY_PATTERN.match(day.text):
-                print((get_day(day), month_title, year))
+                print(get_day(day), month_title, year, is_weekend(day))
 
 
 if __name__ == '__main__':
