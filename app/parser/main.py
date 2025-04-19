@@ -25,11 +25,13 @@ def main():
     """Главная функция парсера."""
     soup = get_soup(MAIN_URL)
     year = get_year(soup)
+    day_count = 0
     for month in get_month_table(soup):
         month_title = get_month(month)
         for day in get_days_tag(month):
             if DAY_PATTERN.match(day.text):
-                print((get_day(day), month_title, year))
+                day_count += 1
+                print((day_count, get_day(day), month_title, year))
 
 
 if __name__ == '__main__':
