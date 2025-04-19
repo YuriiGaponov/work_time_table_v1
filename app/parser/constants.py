@@ -8,3 +8,4 @@ YEAR_PATTERN = re.compile(r'Производственный календарь 
 # Шаблоны для поиска числа месяца в тексте тэга.
 DAY_PATTERN = re.compile(r'^\d{1,2}\*?')
 DAY_INDEX_PATTERN = re.compile(r'^(?P<day>\d{1,2})')
+WEEKEND_PATTERN = 'weekend'
