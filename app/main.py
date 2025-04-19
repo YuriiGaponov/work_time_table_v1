@@ -1,6 +1,9 @@
+from .parser import parser
+
+
 def main():
     """Главная функция приложения."""
-    return print('Проверка')
+    return parser()
 
 
 if __name__ == '__main__':

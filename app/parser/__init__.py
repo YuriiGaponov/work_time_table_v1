@@ -1,1 +1,1 @@
-from main import main as parser # noqa
+from .main import main as parser # noqa
