@@ -48,3 +48,26 @@ class Parser():
     def is_weekend(self, day: Tag) -> bool:
         """Возращает True, если день является выходным или праздничным."""
         return parser_constants.WEEKEND_PATTERN in day['class']
+
+    def get_calendar(self):
+        """
+        Возвращает список кортежей для каждого дня года в виде:
+        номер дня в году, число, название месяца, год, является ли выходным.
+        """
+        result = []
+        year = self.get_year()
+        day_count = 0
+        for month in self.get_month_table():
+            month_title = self.get_month_title(month)
+            for day in self.get_days_tag(month):
+                if parser_constants.DAY_PATTERN.match(day.text):
+                    day_count += 1
+                    result.append(
+                        (
+                            day_count,
+                            self.get_day(day),
+                            month_title, year,
+                            self.is_weekend(day)
+                        )
+                    )
+        return result
