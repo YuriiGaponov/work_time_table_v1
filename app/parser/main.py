@@ -7,8 +7,7 @@ parser = Parser(parser_constants.MAIN_URL)
 
 def main():
     """Главная функция парсера."""
-    for date in parser.get_calendar():
-        print(date)
+    return parser.get_calendar()
 
 
 if __name__ == '__main__':
