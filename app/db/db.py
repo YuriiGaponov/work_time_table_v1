@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, Column, Integer
-from sqlalchemy.orm import declarative_base, declared_attr
+from sqlalchemy.orm import declarative_base, declared_attr, sessionmaker
 
 from .settings import db_settings
 
@@ -16,3 +16,7 @@ class PreBase():
 
 
 Base = declarative_base(cls=PreBase)
+
+Session = sessionmaker(bind=engine)
+
+session = Session()

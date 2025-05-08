@@ -1,1 +1,1 @@
-from .db import Base, engine # noqa
+from .db import Base, engine, session # noqa

@@ -1,11 +1,11 @@
-from .calendar import CalendarDay # noqa
-from .db import Base, engine
+from .calendar import save_calendar
+from .db import Base, engine, session
 from .parser import parser
 
 
 def main():
     """Главная функция приложения."""
-    return parser()
+    return save_calendar(session, parser())
 
 
 if __name__ == '__main__':
