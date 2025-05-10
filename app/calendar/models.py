@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Integer, String, UniqueConstraint
 
 from ..db import Base
 
@@ -11,6 +11,11 @@ class CalendarDay(Base):
     month: str = Column(String)
     year: int = Column(Integer)
     is_weekend: bool = Column(Boolean)
+
+    __table_args__ = (
+        UniqueConstraint('number', 'day', 'month', 'year', 'is_weekend',
+                         name='ux_calendar_day'),
+    )
 
     def __init__(self, number, day, month, year, is_weekend):
         self.number = number
