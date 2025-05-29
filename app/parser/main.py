@@ -1,8 +1,11 @@
-from .constants import parser_constants
-from .parser import Parser
+from .config import ConsultantPlusParserConfig
+from .parser import ConsultantPlusParser
+
+# Инициализированнный объект конфигурации парсера.
+parser_config = ConsultantPlusParserConfig()
 
 # Парсер производственного календаря.
-parser = Parser(parser_constants.MAIN_URL)
+parser = ConsultantPlusParser(parser_config)
 
 
 def main():
