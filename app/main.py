@@ -3,7 +3,7 @@ from .db import Base, engine, session
 from .parser import parser
 
 
-def main():
+def main() -> None:
     """Главная функция приложения."""
     return save_calendar(session, parser())
 
