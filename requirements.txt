@@ -5,6 +5,9 @@ charset-normalizer==3.4.1
 greenlet==3.1.1
 idna==3.10
 lxml==5.3.1
+mypy==1.15.0
+mypy_extensions==1.1.0
+psycopg2-binary==2.9.10
 requests==2.32.3
 soupsieve==2.6
 SQLAlchemy==2.0.39

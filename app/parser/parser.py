@@ -1,5 +1,6 @@
 import re
 import requests
+from typing import Optional
 
 from bs4 import BeautifulSoup
 from bs4.element import Tag
@@ -21,7 +22,7 @@ class Parser():
         """
         return BeautifulSoup(requests.Session().get(self.url).text, parser)
 
-    def get_year(self) -> int:
+    def get_year(self) -> Optional[int]:
         """Возвращает год календаря в виде числа."""
         return int(re.search(
             parser_constants.YEAR_PATTERN, self.get_soup().find('h1').text
