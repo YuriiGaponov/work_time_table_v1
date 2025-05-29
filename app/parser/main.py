@@ -1,4 +1,7 @@
+from typing import List, Tuple
+
 from .config import ConsultantPlusParserConfig
+from .interfaces import Parser
 from .parser import ConsultantPlusParser
 
 # Инициализированнный объект конфигурации парсера.
@@ -8,10 +11,10 @@ parser_config = ConsultantPlusParserConfig()
 parser = ConsultantPlusParser(parser_config)
 
 
-def main():
+def parse_calendar(parser: Parser) -> List[Tuple[int, int, str, int, bool]]:
     """Главная функция парсера."""
     return parser.get_calendar()
 
 
 if __name__ == '__main__':
-    main()
+    parse_calendar()
