@@ -1,7 +1,7 @@
 from typing import List, Protocol, Tuple
 
 
-class Parser(Protocol):
+class ParserInterface(Protocol):
     """Интерфейс парсера."""
 
     def get_calendar() -> List[Tuple[int, int, str, int, bool]]:
