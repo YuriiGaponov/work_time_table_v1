@@ -32,7 +32,7 @@ class ConsultantPlusParser():
         return self._soup
 
     def _get_year(self) -> int:
-        """Возвращает год календаря в виде числа."""
+        """Возвращает год календаря."""
         return int(re.search(
             self.config.YEAR_PATTERN, self._get_soup().find('h1').text
         ).group('year'))
@@ -42,7 +42,7 @@ class ConsultantPlusParser():
         return self._get_soup().find_all('table', {'class': 'cal'})
 
     def _get_month_title(self, month: Tag) -> str:
-        """Возвращает название месяца в виде строки."""
+        """Возвращает название месяца."""
         return month.find('th', {'class': 'month'}).text
 
     def _get_days_tag(self, month: Tag) -> List[Tag]:
@@ -61,7 +61,7 @@ class ConsultantPlusParser():
 
     def get_calendar(self) -> List[Tuple[int, int, str, int, bool]]:
         """
-        Возвращает список кортежей для каждого дня года в виде:
+        Возвращает список дней года в виде:
         номер дня в году, число, название месяца, год, является ли выходным.
         """
         result = []

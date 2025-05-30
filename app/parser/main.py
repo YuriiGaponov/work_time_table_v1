@@ -4,7 +4,7 @@ from .config import ConsultantPlusParserConfig
 from .interfaces import ParserInterface
 from .parser import ConsultantPlusParser
 
-# Инициализированнный объект конфигурации парсера.
+# Конфигурация парсера.
 parser_config = ConsultantPlusParserConfig()
 
 # Парсер производственного календаря.
