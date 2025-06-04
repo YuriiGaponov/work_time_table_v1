@@ -1,12 +1,14 @@
 import re
-import requests
 from dataclasses import dataclass
-from typing import List, Optional, Tuple
+from requests import Response, Session
+from requests.exceptions import RequestException
+from typing import Annotated, List, Optional, Tuple
 
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 
 from .config import ConsultantPlusParserConfig
+from .exceptions import ParseException
 from .logger import logger
 
 
@@ -27,17 +29,41 @@ class ConsultantPlusParser():
         возвращает HTML страницы в виде текста.
         """
         if self._soup is None:
-            logger.info(f'Получение HTML со страницы \n{self.config.MAIN_URL}')
-            self._soup = BeautifulSoup(
-                requests.Session().get(self.config.MAIN_URL).text, parser
-            )
+            try:
+                logger.info(
+                    f'Получение ответа от страницы {self.config.MAIN_URL}'
+                )
+                response: Response = Session().get(self.config.MAIN_URL)
+
+                # проверяем статус ответа
+                response.raise_for_status()
+                logger.info('Ответ получен')
+
+                self._soup = BeautifulSoup(response.text, parser)
+                logger.info('Получен HTML страницы')
+
+            except RequestException:
+                logger.error('Ответ не получен')
+
         return self._soup
 
-    def _get_year(self) -> int:
+    def _get_year(self) -> Annotated[int, '2000 <= value <= 2100']:
         """Возвращает год календаря."""
-        return int(re.search(
-            self.config.YEAR_PATTERN, self._get_soup().find('h1').text
-        ).group('year'))
+        try:
+            year_tag: Tag = self._get_soup().find('h1')
+
+            if not year_tag:
+                raise ParseException
+
+            year = int(re.search(
+                self.config.YEAR_PATTERN, year_tag.text
+            ).group('year'))
+
+        except ParseException:
+            logger.error('Ошибка получения значения года из HTML')
+
+        logger.info(f'Из HTML получен год календаря: {year}')
+        return year
 
     def _get_month_table(self) -> List[Tag]:
         """Возвращает список тэгов календаря для каждого месяца."""
@@ -66,11 +92,11 @@ class ConsultantPlusParser():
         Возвращает список дней года в виде:
         номер дня в году, число, название месяца, год, является ли выходным.
         """
-        result = []
-        year = self._get_year()
+        result: list = []
+        year: int = self._get_year()
         day_count = 0
         for month in self._get_month_table():
-            month_title = self._get_month_title(month)
+            month_title: str = self._get_month_title(month)
             for day in self._get_days_tag(month):
                 if self.config.DAY_PATTERN.match(day.text):
                     day_count += 1
