@@ -30,7 +30,7 @@ class ConsultantPlusParser():
         """
         if self._soup is None:
             try:
-                logger.info(
+                logger.warning(
                     f'Получение ответа от страницы {self.config.MAIN_URL}'
                 )
                 response: Response = Session().get(self.config.MAIN_URL)
@@ -71,7 +71,19 @@ class ConsultantPlusParser():
 
     def _get_month_title(self, month: Tag) -> str:
         """Возвращает название месяца."""
-        return month.find('th', {'class': 'month'}).text
+        try:
+            month_tag = month.find('th', {'class': 'month'})
+
+            if not month_tag:
+                raise ParseException
+
+            month_title = month_tag.text
+            logger.info(f'Из HTML получено название месяца: {month_title}')
+
+        except ParseException:
+            logger.error('Ошибка получения название месяца из HTML')
+
+        return month_title
 
     def _get_days_tag(self, month: Tag) -> List[Tag]:
         """Возвращает список тэгов дней в месяце."""
