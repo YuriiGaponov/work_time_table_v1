@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 
 from .config import ConsultantPlusParserConfig
+from .logger import logger
 
 
 @dataclass
@@ -26,6 +27,7 @@ class ConsultantPlusParser():
         возвращает HTML страницы в виде текста.
         """
         if self._soup is None:
+            logger.info(f'Получение HTML со страницы \n{self.config.MAIN_URL}')
             self._soup = BeautifulSoup(
                 requests.Session().get(self.config.MAIN_URL).text, parser
             )

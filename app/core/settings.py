@@ -1,7 +1,8 @@
 class Settings():
     """Класс общих настроек приложения."""
 
-    db_path = 'data/db/'
+    DB_PATH: str = 'data/db/'
+    LOG_PATH: str = 'data/log/'
 
 
 # Экземпляр общих настроек приложения.
