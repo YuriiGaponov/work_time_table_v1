@@ -1,8 +1,11 @@
 import re
 
 
-class ParserConstants():
-    """Класс констант, используемых для парсинга календаря."""
+class ConsultantPlusParserConfig():
+    """
+    Класс констант, используемых для парсинга
+    производственного календаря с сайта Консультант+.
+    """
 
     MAIN_URL = (
         'https://www.consultant.ru/law/ref/calendar/proizvodstvennye/2025/'
@@ -17,7 +20,3 @@ class ParserConstants():
     DAY_PATTERN = re.compile(r'^\d{1,2}\*?')
     DAY_INDEX_PATTERN = re.compile(r'^(?P<day>\d{1,2})')
     WEEKEND_PATTERN = 'weekend'
-
-
-# Инициализированнный объект с контантами парсера.
-parser_constants = ParserConstants()

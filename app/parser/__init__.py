@@ -1,8 +1,3 @@
-# Инициализация модуля, экспорт основного парсера
-from .main import main as parser
+from .main import parse_calendar, parser
 
-# Экспортируемые имена
-__all__ = ['parser']
-
-if __name__ == '__main__':
-    parser()
+__all__ = ['parse_calendar', 'parser']
