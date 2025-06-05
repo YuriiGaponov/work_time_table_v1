@@ -87,7 +87,18 @@ class ConsultantPlusParser():
 
     def _get_days_tag(self, month: Tag) -> List[Tag]:
         """Возвращает список тэгов дней в месяце."""
-        return month.find_all('td')
+        try:
+            days_tag = month.find_all('td')
+
+            if not days_tag:
+                raise ParseException
+
+            return days_tag
+
+        except ParseException:
+            logger.error(
+                'Возникла ошибка при получении тэга дней месяца из HTML'
+            )
 
     def _get_day(self, day: Tag) -> int:
         """Возвращает число месяца."""
