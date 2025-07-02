@@ -1,1 +1,3 @@
-from .main import main as parser # noqa
+from .main import parse_calendar, parser
+
+__all__ = ['parse_calendar', 'parser']
