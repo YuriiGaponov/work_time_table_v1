@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 # Хэндлер парсера
 handler = logging.FileHandler(
     f'{app_settings.LOG_PATH}{__name__}.log',
-    mode='w'
+    mode='w', encoding=app_settings.LOG_ENCODING
 )
 
 # Формат записей логов парсера

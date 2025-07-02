@@ -3,6 +3,7 @@ class Settings():
 
     DB_PATH: str = 'data/db/'
     LOG_PATH: str = 'data/log/'
+    LOG_ENCODING: str = 'utf-8'
 
 
 # Экземпляр общих настроек приложения.
