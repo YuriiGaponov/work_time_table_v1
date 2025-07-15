@@ -1,5 +1,5 @@
-import tkinter as tk
+from .base import BaseView
 
 
-class MainView():
+class MainView(BaseView):
     """Главное окно приложения"""
