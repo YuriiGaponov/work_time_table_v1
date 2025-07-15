@@ -1,6 +1,6 @@
 from ...calendar import save_calendar
 from ...db import session
-from .parser import parse_calendar, parser
+from ...parser import parse_calendar, parser
 
 
 # Функция выведена временно и будет переработана
