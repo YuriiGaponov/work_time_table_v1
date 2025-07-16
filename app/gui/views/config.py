@@ -1,11 +1,16 @@
-class ViewConfig():
-    """Класс настроек окон приложения."""
+from .base import BaseConfig
 
-    # Настройки главнго окна
-    MAIN_VIEW_TITLE: str = 'Табель учёта рабочего времени'
-    MAIN_VIEW_LABLE: str = 'Табель учёта рабочего времени'
+
+class MainViewConfig(BaseConfig):
+    """Настройки главнго окна приложения."""
+
+    TITLE: str = 'Табель учёта рабочего времени'
+    HEAD_LABLE: str = 'Табель учёта рабочего времени'
     GET_CALENDAR_BUTTON_TEXT: str = 'Скачать\nпроизводственный\nкалендарь'
 
 
-# Инициализированный класс настроек окон приложения
-view_config = ViewConfig()
+class ParserYearSelectorViewConfig(BaseConfig):
+    """Настройки окон модуля парсинга календаря."""
+
+    TITLE: str = 'Укажите год'
+    HEAD_LABLE: str = 'Укажите год скачиваемого календаря'
