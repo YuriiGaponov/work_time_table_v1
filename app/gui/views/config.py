@@ -14,3 +14,7 @@ class ParserYearSelectorViewConfig(BaseConfig):
 
     TITLE: str = 'Укажите год'
     HEAD_LABLE: str = 'Укажите год скачиваемого календаря'
+    CONTENT_LABLE: str = 'Введите год'
+    CONFIRM_BUTTON_TEXT: str = 'Подтвердить'
+    CLEAN_BUTTON_TEXT: str = 'Очистить'
+    STICKY: str = 'NSEW'
