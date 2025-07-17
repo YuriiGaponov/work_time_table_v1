@@ -1,6 +1,6 @@
 from ...calendar import save_calendar
 from ...db import session
-from ...parser import parse_calendar, parser
+from ...parser import parse_calendar, parser, ParserConfig
 
 
 # Функция выведена временно и будет переработана
@@ -14,3 +14,11 @@ def open_year_selector():
     from ..views import ParserYearSelector
     year_selector = ParserYearSelector()
     year_selector.run()
+
+
+def get_calendar_url(year: str) -> str:
+    """Добавляет в url парсера год календаря."""
+    config = ParserConfig()
+    main_url = config.MAIN_URL
+    # return f'{main_url}{year}/'
+    print(f'{main_url}{year}/')

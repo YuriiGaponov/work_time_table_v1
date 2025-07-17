@@ -19,4 +19,4 @@ class MainView(BaseView):
             text=Config.GET_CALENDAR_BUTTON_TEXT,
             command=open_year_selector
         )
-        self.get_calendar_button.grid(row=0, column=0)
+        self.get_calendar_button.grid(row=0, column=0, sticky=Config.STICKY)

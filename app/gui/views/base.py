@@ -6,6 +6,7 @@ class BaseConfig():
 
     TITLE: str = 'Базовое название окна'
     HEAD_LABLE: str = 'Базовый заголовок'
+    STICKY: str = 'NSEW'
 
 
 class BaseView():

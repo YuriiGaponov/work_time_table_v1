@@ -8,7 +8,7 @@ class ConsultantPlusParserConfig():
     """
 
     MAIN_URL = (
-        'https://www.consultant.ru/law/ref/calendar/proizvodstvennye/2025/'
+        'https://www.consultant.ru/law/ref/calendar/proizvodstvennye/'
     )
 
     # Шаблон для поиска года в тексте тэга.

@@ -1,6 +1,7 @@
 import tkinter as tk
 
 from .base import BaseView
+from ..commands.parser import get_calendar_url
 from .config import ParserYearSelectorViewConfig as Config
 
 
@@ -19,7 +20,8 @@ class ParserYearSelector(BaseView):
         self.select_year_entry = tk.Entry(self.root_content_frame)
         self.confirm_button = tk.Button(
             self.root_content_frame,
-            text=Config.CONFIRM_BUTTON_TEXT
+            text=Config.CONFIRM_BUTTON_TEXT,
+            command=self.get_year
         )
         self.clean_button = tk.Button(
             self.root_content_frame,
@@ -30,3 +32,9 @@ class ParserYearSelector(BaseView):
         self.select_year_entry.grid(row=0, column=1, sticky=Config.STICKY)
         self.confirm_button.grid(row=1, column=0, sticky=Config.STICKY)
         self.clean_button.grid(row=1, column=1, sticky=Config.STICKY)
+
+    def get_year(self):
+        """Получает год из поля ввода и передает его в парсер."""
+        year = self.select_year_entry.get()
+        get_calendar_url(year)
+        self.root.destroy()
