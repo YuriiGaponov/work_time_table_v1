@@ -1,7 +1,7 @@
 import tkinter as tk
 
+from ..commands import get_calendar
 from .base import BaseView
-from ..commands.parser import get_calendar_url
 from .config import ParserYearSelectorViewConfig as Config
 
 
@@ -35,6 +35,5 @@ class ParserYearSelector(BaseView):
 
     def get_year(self):
         """Получает год из поля ввода и передает его в парсер."""
-        year = self.select_year_entry.get()
-        get_calendar_url(year)
+        get_calendar(self.select_year_entry.get())
         self.root.destroy()
