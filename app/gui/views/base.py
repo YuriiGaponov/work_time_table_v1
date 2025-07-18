@@ -21,10 +21,10 @@ class BaseView():
         self.root_head_frame = tk.Frame(self.root)
         self.root_head_frame.pack()
 
-        self.root_lable = tk.Label(
+        self.root_head_lable = tk.Label(
             self.root_head_frame, text=BaseConfig.HEAD_LABLE
         )
-        self.root_lable.pack()
+        self.root_head_lable.grid(row=0, column=0, sticky=BaseConfig.STICKY)
 
         # Фрейм для размещения контента
         self.root_content_frame = tk.Frame(self.root)
@@ -33,3 +33,22 @@ class BaseView():
     def run(self):
         """Запуск окна."""
         self.root.mainloop()
+
+
+class BaseErrorView(BaseView):
+    """Базовый класс окна сообщений об ошибках."""
+
+    def __init__(self):
+        """Инициализация окна."""
+        super().__init__()
+
+        self.confirm_button = tk.Button(
+            self.root_content_frame,
+            text='ОК',
+            command=self.confirm
+        )
+        self.confirm_button.grid(row=0, column=0, sticky=BaseConfig.STICKY)
+
+    def confirm(self):
+        """Подтвердить прочтение сообщения об ошибке и закрыть окно."""
+        self.root.destroy()

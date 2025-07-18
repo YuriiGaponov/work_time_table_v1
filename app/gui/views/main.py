@@ -11,7 +11,7 @@ class MainView(BaseView):
     def __init__(self):
         super().__init__()
         self.root.title(Config.TITLE)
-        self.root_lable.config(text=Config.HEAD_LABLE)
+        self.root_head_lable.config(text=Config.HEAD_LABLE)
 
         # Кнопка запуска парсера производственного календаря
         self.get_calendar_button = tk.Button(

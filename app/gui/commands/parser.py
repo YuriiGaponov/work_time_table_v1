@@ -5,8 +5,8 @@ from ...parser import parse_calendar, Parser, ParserConfig
 
 def open_year_selector() -> None:
     """Открыть окно выбора года производственного календаря."""
-    from ..views import ParserYearSelector
-    year_selector = ParserYearSelector()
+    from ..views import YearSelectorView
+    year_selector = YearSelectorView()
     year_selector.run()
 
 
