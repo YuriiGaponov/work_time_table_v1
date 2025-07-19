@@ -23,8 +23,4 @@ class YearSelectorViewConfig(BaseConfig):
 class IncorrectYearViewConfig(BaseConfig):
     """Настройки информационного окна с сообщением о неверном вводе года."""
 
-    HEAD_LABLE: str = (
-        'Год указан неверно!\n'
-        'Нужно не заморачиваться и всего лишь ввести 4 цифры\n'
-        'в промежутке от 2016 до 2050'
-    )
+    HEAD_LABLE: str = 'Сообщение о некорректном вводе года'

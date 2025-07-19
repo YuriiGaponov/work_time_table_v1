@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from ..commands import get_calendar
+from ..commands import get_calendar, validate_year
 from .base import BaseView, BaseErrorView
 from .config import IncorrectYearViewConfig, YearSelectorViewConfig
 
@@ -52,8 +52,10 @@ class YearSelectorView(BaseView):
 
     def confirm(self):
         """Получает год из поля ввода и передает его в парсер."""
-        get_calendar(self.select_year_entry.get())
-        self.root.destroy()
+        year = self.select_year_entry.get()
+        if validate_year(year):
+            get_calendar(year)
+            self.root.destroy()
 
     def clean(self):
         """Очищает поле ввода года."""

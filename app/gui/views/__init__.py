@@ -1,3 +1,3 @@
-from .parser_year_selector import YearSelectorView
+from .parser_year_selector import IncorrectYearView, YearSelectorView
 
-__all__ = ['YearSelectorView']
+__all__ = ['IncorrectYearView', 'YearSelectorView']

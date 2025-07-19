@@ -10,6 +10,14 @@ def open_year_selector() -> None:
     year_selector.run()
 
 
+def open_incorrect_year(info: str) -> None:
+    """Открыть окно с указанием ошибки ввода года."""
+    from ..views import IncorrectYearView
+    incorrect_year = IncorrectYearView()
+    incorrect_year.root_head_lable.config(text=info)
+    incorrect_year.run()
+
+
 def get_calendar_url(year: str) -> ParserConfig:
     """Добавляет в url парсера год календаря."""
     config = ParserConfig()
