@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from ..commands import get_calendar, validate_year
+from ..commands import get_calendar, open_incorrect_year, not_validate_year
 from .base import BaseView, BaseErrorView
 from .config import IncorrectYearViewConfig, YearSelectorViewConfig
 
@@ -53,7 +53,10 @@ class YearSelectorView(BaseView):
     def confirm(self):
         """Получает год из поля ввода и передает его в парсер."""
         year = self.select_year_entry.get()
-        if validate_year(year):
+        validation = not_validate_year(year)
+        if validation:
+            open_incorrect_year(validation)
+        else:
             get_calendar(year)
             self.root.destroy()
 
@@ -67,4 +70,4 @@ class IncorrectYearView(BaseErrorView):
 
     def __init__(self):
         super().__init__()
-        self.root_head_lable.config(text=IncorrectYearViewConfig.HEAD_LABLE)
+        self.root.title(IncorrectYearViewConfig.TITLE)

@@ -23,4 +23,4 @@ class YearSelectorViewConfig(BaseConfig):
 class IncorrectYearViewConfig(BaseConfig):
     """Настройки информационного окна с сообщением о неверном вводе года."""
 
-    HEAD_LABLE: str = 'Сообщение о некорректном вводе года'
+    TITLE: str = 'Ошибка ввода года.'
