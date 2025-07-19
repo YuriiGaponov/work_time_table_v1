@@ -1,19 +1,20 @@
 from ...calendar import save_calendar
 from ...db import session
 from ...parser import parse_calendar, Parser, ParserConfig
+from ..views import BaseView
 
 
-def open_year_selector() -> None:
+def open_year_selector(top_view: BaseView) -> None:
     """Открыть окно выбора года производственного календаря."""
     from ..views import YearSelectorView
-    year_selector = YearSelectorView()
+    year_selector = YearSelectorView(top_view)
     year_selector.run()
 
 
-def open_incorrect_year(info: str) -> None:
+def open_incorrect_year(info: str, top_view: BaseView) -> None:
     """Открыть окно с указанием ошибки ввода года."""
     from ..views import IncorrectYearView
-    incorrect_year = IncorrectYearView()
+    incorrect_year = IncorrectYearView(top_view)
     incorrect_year.root_head_lable.config(text=info)
     incorrect_year.run()
 

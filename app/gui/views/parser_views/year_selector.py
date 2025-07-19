@@ -1,15 +1,15 @@
 import tkinter as tk
 
-from ..commands import get_calendar, open_incorrect_year, not_validate_year
-from .base import BaseView, BaseErrorView
-from .config import IncorrectYearViewConfig, YearSelectorViewConfig
+from ...commands import get_calendar, not_validate_year, open_incorrect_year
+from ..base import BaseModalView
+from .config import YearSelectorViewConfig
 
 
-class YearSelectorView(BaseView):
+class YearSelectorView(BaseModalView):
     """Окно выбора года для парсинга календаря."""
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, top_view):
+        super().__init__(top_view)
         self.root.title(YearSelectorViewConfig.TITLE)
         self.root_head_lable.config(text=YearSelectorViewConfig.HEAD_LABLE)
 
@@ -55,7 +55,7 @@ class YearSelectorView(BaseView):
         year = self.select_year_entry.get()
         validation = not_validate_year(year)
         if validation:
-            open_incorrect_year(validation)
+            open_incorrect_year(validation, self)
         else:
             get_calendar(year)
             self.root.destroy()
@@ -63,11 +63,3 @@ class YearSelectorView(BaseView):
     def clean(self):
         """Очищает поле ввода года."""
         self.select_year_entry.delete(0, tk.END)
-
-
-class IncorrectYearView(BaseErrorView):
-    """Информационное окно с сообщение о неверном вводе года."""
-
-    def __init__(self):
-        super().__init__()
-        self.root.title(IncorrectYearViewConfig.TITLE)

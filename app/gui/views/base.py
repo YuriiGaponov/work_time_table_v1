@@ -12,9 +12,9 @@ class BaseConfig():
 class BaseView():
     """Базовый класс окна приложения."""
 
-    def __init__(self):
+    def __init__(self, master=None):
         """Инициализация окна."""
-        self.root = tk.Tk()
+        self.root = master or tk.Tk()
         self.root.title(BaseConfig.TITLE)
 
         # Фрейм для размещения заголовка окна
@@ -35,12 +35,23 @@ class BaseView():
         self.root.mainloop()
 
 
-class BaseErrorView(BaseView):
+class BaseModalView(BaseView):
+    """Базовый класс вызываемого окна."""
+
+    def __init__(self, top_view: BaseView):
+        super().__init__(master=tk.Toplevel(top_view.root))
+        self.top_view = top_view
+
+        self.root.transient(top_view.root)
+        self.root.grab_set()
+
+
+class BaseErrorView(BaseModalView):
     """Базовый класс окна сообщений об ошибках."""
 
-    def __init__(self):
+    def __init__(self, top_view):
         """Инициализация окна."""
-        super().__init__()
+        super().__init__(top_view)
 
         self.confirm_button = tk.Button(
             self.root_content_frame,
