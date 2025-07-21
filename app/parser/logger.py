@@ -1,6 +1,14 @@
 import logging
+from pathlib import Path
 
-from ..core import app_settings
+from app.core import app_settings
+
+# Путь к директории логов
+log_dir = Path(app_settings.LOG_PATH)
+
+# Проверяем существование директории логов и создаем её, если нужно
+if not log_dir.exists():
+    log_dir.mkdir(parents=True, exist_ok=True)
 
 # Логгер парсера
 logger = logging.getLogger(__name__)

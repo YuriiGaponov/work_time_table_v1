@@ -1,5 +1,5 @@
-from .db import Base, engine
-from .gui import MainView
+from app.db import Base, engine
+from app.gui import MainView
 
 
 def main() -> None:
