@@ -1,3 +1,6 @@
+from .utils import get_path
+
+
 class Settings():
     """Класс общих настроек приложения."""
 
@@ -8,6 +11,13 @@ class Settings():
     # Диапазон лет, в пределах которого ведется парсинг
     MIN_PARSE_YEAR = 2017
     MAX_PARSE_YEAR = 2026
+
+    def get_db_path(self) -> str:
+        """
+        Возвпащает путь к базе данных
+        в зависимости от способа запуска приложения.
+        """
+        return get_path(self.DB_PATH)
 
 
 # Экземпляр общих настроек приложения.

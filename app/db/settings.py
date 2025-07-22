@@ -1,6 +1,3 @@
-import os
-import sys
-
 from app.core import app_settings
 
 
@@ -18,22 +15,5 @@ class DBSettings():
         return f'{self.DIALECT}:///{self.db_path}{self.DB_NAME}'
 
 
-def get_db_path(relative_path):
-    """
-    В зависимости от способа запуска приложения:
-    - исполняемая папка / файл
-    - через терминал на этапе разработки
-    возвращает абсолютный путь до базы данных.
-    """
-    try:
-        # Для исполняемого файла
-        base_path = sys._MEIPASS
-    except Exception:
-        # Для разработки
-        base_path = os.path.abspath(".")
-
-    return os.path.join(base_path, relative_path)
-
-
-# Экземпляр общих настроек приложения.
-db_settings = DBSettings(get_db_path(app_settings.DB_PATH))
+# Экземпляр настроек базы данных.
+db_settings = DBSettings(app_settings.get_db_path())
