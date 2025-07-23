@@ -1,5 +1,6 @@
 import os
 import sys
+from pathlib import Path
 
 
 def get_path(relative_path: str) -> str:
@@ -17,3 +18,11 @@ def get_path(relative_path: str) -> str:
         base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
+
+
+def check_dir(dir_path: str) -> None:
+    """Проверяет существование директории и создает её, если нужно."""
+    dir = Path(dir_path)
+
+    if not dir.exists():
+        dir.mkdir(parents=True, exist_ok=True)
