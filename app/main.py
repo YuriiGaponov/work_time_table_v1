@@ -1,13 +1,15 @@
-from .calendar import save_calendar
-from .db import Base, engine, session
-from .parser import parse_calendar, parser
+from app.core import app_settings
+from app.db import Base, engine
+from app.gui import MainView
 
 
 def main() -> None:
     """Главная функция приложения."""
-    return save_calendar(session, parse_calendar(parser))
+    app = MainView()
+    app.run()
 
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
+    app_settings.check_dirs()
     main()

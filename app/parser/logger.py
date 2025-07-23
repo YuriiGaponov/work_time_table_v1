@@ -1,13 +1,13 @@
 import logging
 
-from ..core import app_settings
+from app.core import app_settings
 
 # Логгер парсера
 logger = logging.getLogger(__name__)
 
 # Хэндлер парсера
 handler = logging.FileHandler(
-    f'{app_settings.LOG_PATH}{__name__}.log',
+    f'{app_settings.get_log_path()}{__name__}.log',
     mode='w', encoding=app_settings.LOG_ENCODING
 )
 
