@@ -1,4 +1,4 @@
-from ...core import app_settings
+from app.core import app_settings
 
 
 def not_validate_year(year: str) -> bool:
