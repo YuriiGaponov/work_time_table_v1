@@ -1,4 +1,4 @@
-from ..base import BaseErrorView
+from app.gui.views.base import BaseErrorView
 from .config import IncorrectYearViewConfig
 
 

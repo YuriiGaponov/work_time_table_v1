@@ -1,6 +1,6 @@
 from sqlalchemy import Boolean, Column, Integer, String, UniqueConstraint
 
-from ..db import Base
+from app.db import Base
 
 
 class CalendarDay(Base):

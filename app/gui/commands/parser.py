@@ -1,12 +1,12 @@
-from ...calendar import save_calendar
-from ...db import session
-from ...parser import parse_calendar, Parser, ParserConfig
-from ..views import BaseView
+from app.calendar import save_calendar
+from app.db import session
+from app.parser import parse_calendar, Parser, ParserConfig
+from app.gui.views import BaseView
 
 
 def open_year_selector(top_view: BaseView) -> None:
     """Открыть окно выбора года производственного календаря."""
-    from ..views import YearSelectorView
+    from app.gui.views import YearSelectorView
     year_selector = YearSelectorView(top_view)
     year_selector.run()
 

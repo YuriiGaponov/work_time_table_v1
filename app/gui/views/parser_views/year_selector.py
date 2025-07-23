@@ -1,7 +1,9 @@
 import tkinter as tk
 
-from ...commands import get_calendar, not_validate_year, open_incorrect_year
-from ..base import BaseModalView
+from app.gui.commands import (
+    get_calendar, not_validate_year, open_incorrect_year
+)
+from app.gui.views.base import BaseModalView
 from .config import YearSelectorViewConfig
 
 

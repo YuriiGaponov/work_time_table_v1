@@ -1,4 +1,4 @@
-from ..core import app_settings
+from app.core import app_settings
 
 
 class DBSettings():
@@ -15,5 +15,5 @@ class DBSettings():
         return f'{self.DIALECT}:///{self.db_path}{self.DB_NAME}'
 
 
-# Экземпляр общих настроек приложения.
-db_settings = DBSettings(app_settings.DB_PATH)
+# Экземпляр настроек базы данных.
+db_settings = DBSettings(app_settings.get_db_path())

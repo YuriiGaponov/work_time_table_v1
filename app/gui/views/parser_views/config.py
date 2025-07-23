@@ -1,4 +1,4 @@
-from ..base import BaseConfig
+from app.gui.views.base import BaseConfig
 
 
 class YearSelectorViewConfig(BaseConfig):

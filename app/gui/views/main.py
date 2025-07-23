@@ -1,7 +1,7 @@
 import tkinter as tk
 
+from app.gui.commands import open_year_selector
 from .base import BaseView
-from ..commands import open_year_selector
 from .config import MainViewConfig as Config
 
 
