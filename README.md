@@ -35,9 +35,14 @@ pip install -r requirements.txt
 python -m app.main
 ```
 **сборка исполняемой папки:**
-в корневой папке проекта с созданным и активированным виртуальным окружением и установленными зависимостями выполните команду:
+в корневой папке проекта с созданным и активированным виртуальным окружением и установленными зависимостями выполните команду
+для Windows:
 ```
 pyinstaller --windowed --add-data "data;data" --name=WorktimeTable app/main.py
+```
+для Linux:
+```
+pyinstaller --windowed --add-data=data:data --name=WorktimeTable app/main.py
 ```
 в корневой директории проекта появятся папки build, dist и файл WorktimeTable.spec.
 Внутри build будет находится папка WorktimeTable, содержащая файл WorktimeTable.exe, запускающий приложение.

@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from app.gui.commands import open_year_selector
+from app.gui.commands import open_employee_manager, open_year_selector
 from .base import BaseView
 from .config import MainViewConfig as Config
 
@@ -36,3 +36,4 @@ class MainView(BaseView):
 
     def employee_manager(self):
         """Открыть окно управления данными сотрудников."""
+        open_employee_manager(self)
