@@ -7,3 +7,4 @@ class MainViewConfig(BaseConfig):
     TITLE: str = 'Табель учёта рабочего времени'
     HEAD_LABLE: str = 'Табель учёта рабочего времени'
     GET_CALENDAR_BUTTON_TEXT: str = 'Скачать\nпроизводственный\nкалендарь'
+    EMPLOYEES_BUTTON_TEXT: str = 'Добавить\nсотрудников'

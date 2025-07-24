@@ -51,3 +51,5 @@ pyinstaller --windowed --add-data "data;data" --name=WorktimeTable app/main.py
 Общие настройки приложения
 -  **calendar**
 Сохраняет результат работы парсера в БД в виде календаря.
+-  **employees**
+Создание, изменение, удаления сведений о сотрудниках в БД.
