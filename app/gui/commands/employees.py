@@ -1,8 +1,15 @@
 from app.gui.views import BaseView
-from app.gui.views.employees_views import EmployeeManagerView
 
 
 def open_employee_manager(top_view: BaseView) -> None:
     """Открыть окно управления данными сотрудников."""
-    employee_manager = EmployeeManagerView(top_view)
-    employee_manager.run()
+    from app.gui.views.employees_views import EmployeeManagerView
+    view = EmployeeManagerView(top_view)
+    view.run()
+
+
+def open_create_employee(top_view: BaseView) -> None:
+    """Открыть окно добавления нового сотрудника."""
+    from app.gui.views.employees_views import CreateEmployeeBaseView
+    view = CreateEmployeeBaseView(top_view)
+    view.run()

@@ -1,5 +1,6 @@
 import tkinter as tk
 
+from app.gui.commands import open_create_employee
 from app.gui.views.base import BaseModalView
 from .config import EmployeeManagerViewConfig
 
@@ -27,3 +28,4 @@ class EmployeeManagerView(BaseModalView):
 
     def add_employee_view(self):
         """Открыть окно добавления сотрудника в БД."""
+        open_create_employee(self)
