@@ -10,6 +10,7 @@ def main() -> None:
 
 
 if __name__ == '__main__':
+    print(Base.metadata.tables.keys())  # временно, для отладки
     Base.metadata.create_all(engine)
     app_settings.check_dirs()
     main()

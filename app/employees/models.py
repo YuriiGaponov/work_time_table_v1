@@ -1,4 +1,5 @@
 from sqlalchemy import Column, String, UniqueConstraint
+
 from app.db import Base
 
 
@@ -19,7 +20,7 @@ class Employee(Base):
 
     def __init__(self, name: str, surname: str, department: str,
                  patronymic: str = None):
-        """Конструктор для создания нового сотрудника"""
+        """Конструктор для создания нового сотрудника."""
         self.name = name
         self.surname = surname
         self.department = department
