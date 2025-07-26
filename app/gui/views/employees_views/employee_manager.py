@@ -6,7 +6,7 @@ from .config import EmployeeManagerViewConfig
 
 
 class EmployeeManagerView(BaseModalView):
-    """Окно работы со списком сотрудников."""
+    """Окно операций для работы со списком сотрудников."""
 
     def __init__(self, top_view):
         """Инициализация окна."""

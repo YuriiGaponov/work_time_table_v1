@@ -9,8 +9,19 @@ class EmployeeManagerViewConfig(BaseConfig):
     ADD_EMPLOYEE_BUTTON_TEXT: str = 'Добавить сотрудника'
 
 
-class CreateEmployeeBaseViewConfig(BaseConfig):
+class CRUDEmployeeBaseViewConfig(BaseConfig):
+    """Настройки окна создания нового сотрудника."""
+
+    NAME_ENTRY_LABLE_TEXT: str = 'Имя'
+    PATRONYMIC_ENTRY_LABLE_TEXT: str = 'Отчество'
+    SURNAME_ENTRY_LABLE_TEXT: str = 'Фамилия'
+    DEPARTMENT_ENTRY_LABLE_TEXT: str = 'Отдел'
+    CLEAN_BUTTON_TEXT: str = 'Очистить'
+
+
+class CreateEmployeeBaseViewConfig(CRUDEmployeeBaseViewConfig):
     """Настройки окна создания нового сотрудника."""
 
     TITLE: str = 'Добавление сотрудника'
     HEAD_LABLE: str = 'Введите фамилию, имя, отчество (при наличии), отдел'
+    COMFIRM_BUTTON_TEXT: str = 'Добавить'
