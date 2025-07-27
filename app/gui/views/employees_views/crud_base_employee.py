@@ -48,7 +48,8 @@ class CRUDEmployeeBaseView(BaseModalView):
         )
         # Кнопка подтверждения
         self.confirm_button = tk.Button(
-            self.root_content_frame
+            self.root_content_frame,
+            command=self.confirn
         )
         # Кнопка очистки
         self.clean_button = tk.Button(
@@ -97,6 +98,15 @@ class CRUDEmployeeBaseView(BaseModalView):
             row=4, column=1,
             sticky=CRUDEmployeeBaseViewConfig.STICKY
         )
+
+    def confirn(self):
+        """Возвращает значения заполненных полей."""
+        return {
+            'name': self.name_entry.get(),
+            'patronymic': self.patronymic_entry.get(),
+            'surname': self.surname_entry.get(),
+            'department': self.department_entry.get()
+        }
 
     def clean(self):
         """Очищает заполненные поля ввода."""

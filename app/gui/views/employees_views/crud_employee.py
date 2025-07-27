@@ -15,3 +15,6 @@ class CreateEmployeeBaseView(CRUDEmployeeBaseView):
         self.confirm_button.config(
             text=CreateEmployeeBaseViewConfig.COMFIRM_BUTTON_TEXT
         )
+
+    def confirn(self):
+        print(super().confirn())  # для отладки
