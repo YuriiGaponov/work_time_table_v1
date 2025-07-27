@@ -1,3 +1,4 @@
+from app.gui.commands import create_employee
 from .config import CreateEmployeeBaseViewConfig
 from .crud_base_employee import CRUDEmployeeBaseView
 
@@ -17,4 +18,4 @@ class CreateEmployeeBaseView(CRUDEmployeeBaseView):
         )
 
     def confirn(self):
-        print(super().confirn())  # для отладки
+        create_employee(super().confirm())

@@ -1,5 +1,6 @@
 import tkinter as tk
 
+from app.employees import EmployeeSchema
 from app.gui.views.base import BaseModalView
 from .config import CRUDEmployeeBaseViewConfig
 
@@ -99,7 +100,7 @@ class CRUDEmployeeBaseView(BaseModalView):
             sticky=CRUDEmployeeBaseViewConfig.STICKY
         )
 
-    def confirn(self):
+    def confirm(self) -> EmployeeSchema:
         """Возвращает значения заполненных полей."""
         return {
             'name': self.name_entry.get(),

@@ -15,7 +15,7 @@ class Employee(Base):
         UniqueConstraint(
             'name', 'patronymic', 'surname', 'department',
             name='ux_employee'
-        )
+        ),
     )
 
     def __init__(self, name: str, surname: str, department: str,
