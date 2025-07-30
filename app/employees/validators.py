@@ -1,7 +1,19 @@
 from typing import Optional
 from pydantic import BaseModel, field_validator, ValidationError
+from sqlalchemy.orm import Session
 
-from .schemas import FULL_NAME_PATTERN
+from .models import Employee
+from .schemas import EmployeeSchema, FULL_NAME_PATTERN
+
+
+def employee_exist(session: Session, data: EmployeeSchema) -> bool:
+    """Проверяет, существует ли сотрудник в БД."""
+    return session.query(Employee).filter(
+        Employee.name == data['name'],
+        Employee.patronymic == data['patronymic'],
+        Employee.surname == data['surname'],
+        Employee.department == data['department']
+    ).first() is not None
 
 
 class EmployeeValidator(BaseModel):
@@ -33,9 +45,22 @@ class EmployeeValidator(BaseModel):
     @field_validator('patronymic', mode='before')
     def validate_patronymic(cls, value: Optional[str]) -> Optional[str]:
         if value:
-            if not value.strip():
+            if value != FULL_NAME_PATTERN:
                 raise ValidationError(
                     'Отчество написано со строчной буквы',
                     ' или использованы недопустимые символы'
                 )
         return value if value else None
+
+
+def validate_employee(session: Session, data: EmployeeSchema) -> bool:
+    """Полная функция валидации сотрудника"""
+    try:
+        # Валидация через Pydantic
+        validated_data = EmployeeValidator(**data)
+        
+        return True
+    
+    except ValidationError as ve:
+        print(f"Ошибка валидации данных: {ve}")
+        return False

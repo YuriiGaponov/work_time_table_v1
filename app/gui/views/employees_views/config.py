@@ -25,3 +25,12 @@ class CreateEmployeeBaseViewConfig(CRUDEmployeeBaseViewConfig):
     TITLE: str = 'Добавление сотрудника'
     HEAD_LABLE: str = 'Введите фамилию, имя, отчество (при наличии), отдел'
     COMFIRM_BUTTON_TEXT: str = 'Добавить'
+
+
+class EmployeeExistViewConfig(BaseConfig):
+    """
+    Настройки информационного окна с сообщением с сообщение о существовании
+    сотрудника с вводимыми данными.
+    """
+
+    TITLE: str = 'Сотрудник уже существует.'

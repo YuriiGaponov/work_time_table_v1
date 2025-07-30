@@ -18,4 +18,4 @@ class CreateEmployeeBaseView(CRUDEmployeeBaseView):
         )
 
     def confirn(self):
-        create_employee(super().confirm())
+        create_employee(self, super().confirm())
