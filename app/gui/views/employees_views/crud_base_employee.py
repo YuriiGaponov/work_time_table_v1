@@ -50,7 +50,7 @@ class CRUDEmployeeBaseView(BaseModalView):
         # Кнопка подтверждения
         self.confirm_button = tk.Button(
             self.root_content_frame,
-            command=self.confirn
+            command=self.confirm
         )
         # Кнопка очистки
         self.clean_button = tk.Button(

@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import BaseModel, field_validator, ValidationError
+from pydantic import BaseModel, field_validator
 from sqlalchemy.orm import Session
 
 from .models import Employee
@@ -24,43 +24,40 @@ class EmployeeValidator(BaseModel):
     surname: str
     department: str
 
-    @field_validator('name', mode='before')
+    @field_validator('name', mode='after')
     def validate_name(cls, value: str) -> str:
+        """Валидация имени."""
         if value != FULL_NAME_PATTERN:
-            raise ValidationError(
-                'Имя написано со строчной буквы',
-                ' или использованы недопустимые символы'
+            raise ValueError(
+                'Имя написано со строчной буквы '
+                'или использованы недопустимые символы'
             )
         return value
 
-    @field_validator('surname', mode='before')
+    @field_validator('surname', mode='after')
     def validate_surname(cls, value: str) -> str:
+        """Валидация фамилии."""
         if value != FULL_NAME_PATTERN:
-            raise ValidationError(
-                'Фамилия написана со строчной буквы',
-                ' или использованы недопустимые символы'
+            raise ValueError(
+                'Фамилия написана со строчной буквы '
+                'или использованы недопустимые символы'
             )
         return value
 
-    @field_validator('patronymic', mode='before')
+    @field_validator('patronymic', mode='after')
     def validate_patronymic(cls, value: Optional[str]) -> Optional[str]:
+        """Валидация отчества."""
         if value:
             if value != FULL_NAME_PATTERN:
-                raise ValidationError(
-                    'Отчество написано со строчной буквы',
-                    ' или использованы недопустимые символы'
+                raise ValueError(
+                    'Отчество написано со строчной буквы '
+                    'или использованы недопустимые символы'
                 )
         return value if value else None
 
 
-def validate_employee(session: Session, data: EmployeeSchema) -> bool:
+def validate_employee(data: EmployeeSchema) -> bool:
     """Полная функция валидации сотрудника"""
-    try:
-        # Валидация через Pydantic
-        validated_data = EmployeeValidator(**data)
-        
-        return True
-    
-    except ValidationError as ve:
-        print(f"Ошибка валидации данных: {ve}")
-        return False
+    EmployeeValidator(**data)
+
+    return True

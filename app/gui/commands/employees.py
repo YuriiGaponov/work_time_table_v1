@@ -1,5 +1,5 @@
 from app.db import session
-from app.employees import EmployeeSchema, employee_exist, save_employee
+from app.employees import EmployeeSchema, employee_exist, save_employee, validate_employee
 from app.gui.views import BaseView
 
 
@@ -27,12 +27,17 @@ def open_validation_error(top_view: BaseView, message: str) -> None:
 
 def create_employee(top_view: BaseView, data: EmployeeSchema) -> None:
     """Создать сотрудника и добавить в БД."""
-    # Валидация сотрудника
+    # Проверка существования сотрудника
     if employee_exist(session, data):
         open_validation_error(
             top_view,
             'Сотрудник с такими данными уже существует!'
         )
-    # проверить поля
     else:
-        save_employee(session, data)
+        try:
+            # Валидация введенных данных сотрудника
+            validate_employee(data)
+            save_employee(session, data)
+        # except ValidationError as ve:
+        except ValueError as ve:
+            open_validation_error(top_view, ve)

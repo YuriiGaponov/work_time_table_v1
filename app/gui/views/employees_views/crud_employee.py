@@ -17,5 +17,5 @@ class CreateEmployeeBaseView(CRUDEmployeeBaseView):
             text=CreateEmployeeBaseViewConfig.COMFIRM_BUTTON_TEXT
         )
 
-    def confirn(self):
+    def confirm(self):
         create_employee(self, super().confirm())
