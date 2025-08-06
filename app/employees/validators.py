@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 
 from .models import Employee
 from .schemas import EmployeeSchema, FULL_NAME_PATTERN
+from .validation_messages import EmployeeValidatorMesseges
 
 
 def employee_exist(session: Session, data: EmployeeSchema) -> bool:
@@ -28,10 +29,7 @@ class EmployeeValidator(BaseModel):
     def validate_name(cls, value: str) -> str:
         """Валидация имени."""
         if value != FULL_NAME_PATTERN:
-            raise ValueError(
-                'Имя написано со строчной буквы '
-                'или использованы недопустимые символы'
-            )
+            raise ValueError(EmployeeValidatorMesseges.NAME_PATTERN_MISMATCH)
         return value
 
     @field_validator('surname', mode='after')
@@ -39,8 +37,7 @@ class EmployeeValidator(BaseModel):
         """Валидация фамилии."""
         if value != FULL_NAME_PATTERN:
             raise ValueError(
-                'Фамилия написана со строчной буквы '
-                'или использованы недопустимые символы'
+                EmployeeValidatorMesseges.SURNAME_PATTERN_MISMATCH
             )
         return value
 
@@ -50,8 +47,7 @@ class EmployeeValidator(BaseModel):
         if value:
             if value != FULL_NAME_PATTERN:
                 raise ValueError(
-                    'Отчество написано со строчной буквы '
-                    'или использованы недопустимые символы'
+                    EmployeeValidatorMesseges.PATRONYMIC_PATTERN_MISMATCH
                 )
         return value if value else None
 
