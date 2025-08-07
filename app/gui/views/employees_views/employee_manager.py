@@ -1,4 +1,4 @@
-import tkinter as tk
+from tkinter import ttk
 
 from app.gui.commands import open_create_employee
 from app.gui.views.base import BaseModalView
@@ -14,7 +14,7 @@ class EmployeeManagerView(BaseModalView):
         self.root.title(EmployeeManagerViewConfig.TITLE)
         self.root_head_lable.config(text=EmployeeManagerViewConfig.HEAD_LABLE)
 
-        self.add_employee_button = tk.Button(
+        self.add_employee_button = ttk.Button(
             self.root_content_frame,
             text=EmployeeManagerViewConfig.ADD_EMPLOYEE_BUTTON_TEXT,
             command=self.add_employee_view

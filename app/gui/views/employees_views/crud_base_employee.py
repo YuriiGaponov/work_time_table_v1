@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 
 from app.employees import EmployeeSchema
 from app.gui.views.base import BaseModalView
@@ -16,44 +17,44 @@ class CRUDEmployeeBaseView(BaseModalView):
         super().__init__(top_view)
 
         # Имя
-        self.name_entry_label = tk.Label(
+        self.name_entry_label = ttk.Label(
             self.root_content_frame,
             text=CRUDEmployeeBaseViewConfig.NAME_ENTRY_LABLE_TEXT
         )
-        self.name_entry = tk.Entry(
+        self.name_entry = ttk.Entry(
             self.root_content_frame,
         )
         # Отчество
-        self.patronymic_entry_label = tk.Label(
+        self.patronymic_entry_label = ttk.Label(
             self.root_content_frame,
             text=CRUDEmployeeBaseViewConfig.PATRONYMIC_ENTRY_LABLE_TEXT
         )
-        self.patronymic_entry = tk.Entry(
+        self.patronymic_entry = ttk.Entry(
             self.root_content_frame,
         )
         # Фамилия
-        self.surname_entry_label = tk.Label(
+        self.surname_entry_label = ttk.Label(
             self.root_content_frame,
             text=CRUDEmployeeBaseViewConfig.SURNAME_ENTRY_LABLE_TEXT
         )
-        self.surname_entry = tk.Entry(
+        self.surname_entry = ttk.Entry(
             self.root_content_frame,
         )
         # Отдел
-        self.department_entry_label = tk.Label(
+        self.department_entry_label = ttk.Label(
             self.root_content_frame,
             text=CRUDEmployeeBaseViewConfig.DEPARTMENT_ENTRY_LABLE_TEXT
         )
-        self.department_entry = tk.Entry(
+        self.department_entry = ttk.Entry(
             self.root_content_frame,
         )
         # Кнопка подтверждения
-        self.confirm_button = tk.Button(
+        self.confirm_button = ttk.Button(
             self.root_content_frame,
             command=self.confirm
         )
         # Кнопка очистки
-        self.clean_button = tk.Button(
+        self.clean_button = ttk.Button(
             self.root_content_frame,
             text=CRUDEmployeeBaseViewConfig.CLEAN_BUTTON_TEXT,
             command=self.clean
