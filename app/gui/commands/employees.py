@@ -1,5 +1,10 @@
 from app.db import session
-from app.employees import EmployeeSchema, employee_exist, save_employee, validate_employee
+from app.employees import (
+    EmployeeSchema,
+    employee_exist,
+    save_employee,
+    validate_employee
+)
 from app.gui.views import BaseView
 
 
@@ -38,6 +43,5 @@ def create_employee(top_view: BaseView, data: EmployeeSchema) -> None:
             # Валидация введенных данных сотрудника
             validate_employee(data)
             save_employee(session, data)
-        # except ValidationError as ve:
         except ValueError as ve:
             open_validation_error(top_view, ve)

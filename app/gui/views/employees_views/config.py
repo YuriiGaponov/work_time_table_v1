@@ -7,6 +7,7 @@ class EmployeeManagerViewConfig(BaseConfig):
     TITLE: str = 'Список сотрудников'
     HEAD_LABLE: str = 'Список сотрудников'
     ADD_EMPLOYEE_BUTTON_TEXT: str = 'Добавить сотрудника'
+    SEARCH_EMPLOYEE_BUTTON_TEXT: str = 'Найти сотрудника'
 
 
 class CRUDEmployeeBaseViewConfig(BaseConfig):
