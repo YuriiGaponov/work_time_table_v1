@@ -1,6 +1,9 @@
 from tkinter import ttk
 
-from app.gui.commands import open_create_employee
+from app.gui.commands import (
+    open_create_employee,
+    open_search_employee
+)
 from app.gui.views.base import BaseModalView
 from .config import EmployeeManagerViewConfig
 
@@ -42,3 +45,4 @@ class EmployeeManagerView(BaseModalView):
 
     def search_employee_view(self):
         """Открыть окно поиска сотрудника в БД."""
+        open_search_employee(self)

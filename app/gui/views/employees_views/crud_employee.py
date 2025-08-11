@@ -1,21 +1,41 @@
 from app.gui.commands import create_employee
-from .config import CreateEmployeeBaseViewConfig
+from .config import CreateEmployeeViewConfig, SearchEmployeeViewConfig
 from .crud_base_employee import CRUDEmployeeBaseView
 
 
-class CreateEmployeeBaseView(CRUDEmployeeBaseView):
+class SearchEmployeeView(CRUDEmployeeBaseView):
+    """Окно поиска сотрудника."""
+
+    def __init__(self, top_view):
+        """Инициализация окна."""
+        super().__init__(top_view)
+        self.root.title(SearchEmployeeViewConfig.TITLE)
+        self.root_head_lable.config(
+            text=SearchEmployeeViewConfig.HEAD_LABLE
+        )
+        self.confirm_button.config(
+            text=SearchEmployeeViewConfig.COMFIRM_BUTTON_TEXT
+        )
+
+    def confirm(self):
+        """Найти сотрудника."""
+        return super().confirm()
+
+
+class CreateEmployeeView(CRUDEmployeeBaseView):
     """Окно создания нового сотрудника."""
 
     def __init__(self, top_view):
         """Инициализация окна."""
         super().__init__(top_view)
-        self.root.title(CreateEmployeeBaseViewConfig.TITLE)
+        self.root.title(CreateEmployeeViewConfig.TITLE)
         self.root_head_lable.config(
-            text=CreateEmployeeBaseViewConfig.HEAD_LABLE
+            text=CreateEmployeeViewConfig.HEAD_LABLE
         )
         self.confirm_button.config(
-            text=CreateEmployeeBaseViewConfig.COMFIRM_BUTTON_TEXT
+            text=CreateEmployeeViewConfig.COMFIRM_BUTTON_TEXT
         )
 
     def confirm(self):
+        """Создать сотрудника."""
         create_employee(self, super().confirm())

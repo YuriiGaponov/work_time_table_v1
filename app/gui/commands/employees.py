@@ -15,10 +15,17 @@ def open_employee_manager(top_view: BaseView) -> None:
     view.run()
 
 
+def open_search_employee(top_view: BaseView) -> None:
+    """Открыть окно поиска сотрудника."""
+    from app.gui.views.employees_views import SearchEmployeeView
+    view = SearchEmployeeView(top_view)
+    view.run()
+
+
 def open_create_employee(top_view: BaseView) -> None:
     """Открыть окно добавления нового сотрудника."""
-    from app.gui.views.employees_views import CreateEmployeeBaseView
-    view = CreateEmployeeBaseView(top_view)
+    from app.gui.views.employees_views import CreateEmployeeView
+    view = CreateEmployeeView(top_view)
     view.run()
 
 

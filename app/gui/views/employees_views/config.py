@@ -20,7 +20,15 @@ class CRUDEmployeeBaseViewConfig(BaseConfig):
     CLEAN_BUTTON_TEXT: str = 'Очистить'
 
 
-class CreateEmployeeBaseViewConfig(CRUDEmployeeBaseViewConfig):
+class SearchEmployeeViewConfig(CRUDEmployeeBaseViewConfig):
+    """Настройки окна поиска сотрудника."""
+
+    TITLE: str = 'Найти сотрудника'
+    HEAD_LABLE: str = 'Введите один или несколько параметров поиска'
+    COMFIRM_BUTTON_TEXT: str = 'Найти'
+
+
+class CreateEmployeeViewConfig(CRUDEmployeeBaseViewConfig):
     """Настройки окна создания нового сотрудника."""
 
     TITLE: str = 'Добавление сотрудника'
