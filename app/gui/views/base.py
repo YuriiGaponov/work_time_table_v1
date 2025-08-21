@@ -64,3 +64,11 @@ class BaseErrorView(BaseModalView):
     def confirm(self):
         """Подтвердить прочтение сообщения об ошибке и закрыть окно."""
         self.root.destroy()
+
+
+class BaseListView(BaseModalView):
+    """Базовый класс окна со списком."""
+
+    def __init__(self, top_view):
+        """Инициализация окна."""
+        super().__init__(top_view)

@@ -3,7 +3,7 @@ from app.employees import (
     EmployeeSchema,
     employee_exist,
     save_employee,
-    validate_employee
+    # validate_employee временно отключено для дебага
 )
 from app.gui.views import BaseView
 
@@ -19,6 +19,13 @@ def open_search_employee(top_view: BaseView) -> None:
     """Открыть окно поиска сотрудника."""
     from app.gui.views.employees_views import SearchEmployeeView
     view = SearchEmployeeView(top_view)
+    view.run()
+
+
+def open_list_employee(top_view: BaseView) -> None:
+    """Открыть окно со списком результатов поиска сотрудника."""
+    from app.gui.views.employees_views import ShowEmployeeListView
+    view = ShowEmployeeListView(top_view)
     view.run()
 
 
@@ -48,7 +55,7 @@ def create_employee(top_view: BaseView, data: EmployeeSchema) -> None:
     else:
         try:
             # Валидация введенных данных сотрудника
-            validate_employee(data)
+            # validate_employee(data) временно отключена для дебага.
             save_employee(session, data)
         except ValueError as ve:
             open_validation_error(top_view, ve)

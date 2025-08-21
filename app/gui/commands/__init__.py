@@ -2,6 +2,7 @@ from .employees import (
     create_employee,
     open_create_employee,
     open_employee_manager,
+    open_list_employee,
     open_search_employee
 )
 from .parser import get_calendar, open_incorrect_year, open_year_selector
@@ -14,6 +15,7 @@ __all__ = [
     'open_create_employee',
     'open_employee_manager',
     'open_incorrect_year',
+    'open_list_employee',
     'open_search_employee',
     'open_year_selector'
 ]

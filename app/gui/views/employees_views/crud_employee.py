@@ -1,4 +1,5 @@
-from app.gui.commands import create_employee
+from app.gui.commands import create_employee, open_list_employee
+from app.gui.views.base import BaseListView
 from .config import CreateEmployeeViewConfig, SearchEmployeeViewConfig
 from .crud_base_employee import CRUDEmployeeBaseView
 
@@ -19,7 +20,12 @@ class SearchEmployeeView(CRUDEmployeeBaseView):
 
     def confirm(self):
         """Найти сотрудника."""
-        return super().confirm()
+        # return super().confirm()
+        open_list_employee(self)
+
+
+class ShowEmployeeListView(BaseListView):
+    """Окно отображения списка сотрудников."""
 
 
 class CreateEmployeeView(CRUDEmployeeBaseView):
