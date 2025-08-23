@@ -28,6 +28,13 @@ class SearchEmployeeViewConfig(CRUDEmployeeBaseViewConfig):
     COMFIRM_BUTTON_TEXT: str = 'Найти'
 
 
+class ShowEmployeeListViewConfig(BaseConfig):
+    """Настройки окна отображения списка сотрудников."""
+
+    TITLE: str = 'Список сотрудников'
+    HEAD_LABLE: str = 'Результаты поиска сотрудников'
+
+
 class CreateEmployeeViewConfig(CRUDEmployeeBaseViewConfig):
     """Настройки окна создания нового сотрудника."""
 

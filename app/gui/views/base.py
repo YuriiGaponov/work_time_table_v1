@@ -72,3 +72,9 @@ class BaseListView(BaseModalView):
     def __init__(self, top_view):
         """Инициализация окна."""
         super().__init__(top_view)
+
+        self.listbox = tk.Listbox(
+            self.root_content_frame
+        )
+
+        self.listbox.pack()

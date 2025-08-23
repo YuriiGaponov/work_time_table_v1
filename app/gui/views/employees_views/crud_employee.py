@@ -1,6 +1,10 @@
 from app.gui.commands import create_employee, open_list_employee
 from app.gui.views.base import BaseListView
-from .config import CreateEmployeeViewConfig, SearchEmployeeViewConfig
+from .config import (
+    CreateEmployeeViewConfig,
+    SearchEmployeeViewConfig,
+    ShowEmployeeListViewConfig
+)
 from .crud_base_employee import CRUDEmployeeBaseView
 
 
@@ -26,6 +30,14 @@ class SearchEmployeeView(CRUDEmployeeBaseView):
 
 class ShowEmployeeListView(BaseListView):
     """Окно отображения списка сотрудников."""
+
+    def __init__(self, top_view):
+        """Инициализация окна."""
+        super().__init__(top_view)
+        self.root.title(ShowEmployeeListViewConfig.TITLE)
+        self.root_head_lable.config(
+            text=ShowEmployeeListViewConfig.HEAD_LABLE
+        )
 
 
 class CreateEmployeeView(CRUDEmployeeBaseView):
