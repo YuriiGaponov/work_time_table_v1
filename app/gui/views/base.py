@@ -69,12 +69,16 @@ class BaseErrorView(BaseModalView):
 class BaseListView(BaseModalView):
     """Базовый класс окна со списком."""
 
-    def __init__(self, top_view):
+    def __init__(self, top_view, items=None):
         """Инициализация окна."""
         super().__init__(top_view)
+        self.items = items if items is not None else []
 
         self.listbox = tk.Listbox(
             self.root_content_frame
         )
 
         self.listbox.pack()
+
+        for item in self.items:
+            self.listbox.insert(tk.END, item)

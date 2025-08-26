@@ -22,11 +22,15 @@ def open_search_employee(top_view: BaseView) -> None:
     view.run()
 
 
-def open_list_employee(top_view: BaseView) -> None:
+def open_list_employee(top_view: BaseView, employees: list) -> None:
     """Открыть окно со списком результатов поиска сотрудника."""
     from app.gui.views.employees_views import ShowEmployeeListView
-    view = ShowEmployeeListView(top_view)
+    view = ShowEmployeeListView(top_view, employees)
     view.run()
+
+
+def search_employee(top_view: BaseView) -> None:
+    """Поиск сотрудников."""
 
 
 def open_create_employee(top_view: BaseView) -> None:

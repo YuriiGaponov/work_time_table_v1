@@ -24,16 +24,15 @@ class SearchEmployeeView(CRUDEmployeeBaseView):
 
     def confirm(self):
         """Найти сотрудника."""
-        # return super().confirm()
-        open_list_employee(self)
+        open_list_employee(self, super().confirm())
 
 
 class ShowEmployeeListView(BaseListView):
     """Окно отображения списка сотрудников."""
 
-    def __init__(self, top_view):
+    def __init__(self, top_view, items=None):
         """Инициализация окна."""
-        super().__init__(top_view)
+        super().__init__(top_view, items)
         self.root.title(ShowEmployeeListViewConfig.TITLE)
         self.root_head_lable.config(
             text=ShowEmployeeListViewConfig.HEAD_LABLE
