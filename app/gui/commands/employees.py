@@ -3,6 +3,7 @@ from app.employees import (
     EmployeeSchema,
     employee_exist,
     save_employee,
+    search_employees
     # validate_employee  # временно отключено для дебага
 )
 from app.gui.views import BaseView
@@ -22,15 +23,11 @@ def open_search_employee(top_view: BaseView) -> None:
     view.run()
 
 
-def open_list_employee(top_view: BaseView, employees: list) -> None:
+def open_list_employee(top_view: BaseView, employees: EmployeeSchema) -> None:
     """Открыть окно со списком результатов поиска сотрудника."""
     from app.gui.views.employees_views import ShowEmployeeListView
-    view = ShowEmployeeListView(top_view, employees)
+    view = ShowEmployeeListView(top_view, search_employees(session, employees))
     view.run()
-
-
-def search_employee(top_view: BaseView) -> None:
-    """Поиск сотрудников."""
 
 
 def open_create_employee(top_view: BaseView) -> None:

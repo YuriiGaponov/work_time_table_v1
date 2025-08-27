@@ -1,3 +1,5 @@
+import tkinter as tk
+
 from app.gui.commands import create_employee, open_list_employee
 from app.gui.views.base import BaseListView
 from .config import (
@@ -37,6 +39,9 @@ class ShowEmployeeListView(BaseListView):
         self.root_head_lable.config(
             text=ShowEmployeeListViewConfig.HEAD_LABLE
         )
+
+        for item in self.items:
+            self.listbox.insert(tk.END, item.name)
 
 
 class CreateEmployeeView(CRUDEmployeeBaseView):

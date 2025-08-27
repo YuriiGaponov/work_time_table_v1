@@ -79,6 +79,3 @@ class BaseListView(BaseModalView):
         )
 
         self.listbox.pack()
-
-        for item in self.items:
-            self.listbox.insert(tk.END, item)

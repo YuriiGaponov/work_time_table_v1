@@ -1,6 +1,6 @@
 from sqlalchemy import and_
 from sqlalchemy.orm import Session
-from typing import Optional, List
+from typing import List
 
 from .models import Employee
 from .schemas import EmployeeSchema
@@ -8,10 +8,7 @@ from .schemas import EmployeeSchema
 
 def search_employees(
     session: Session,
-    name: Optional[str] = None,
-    patronymic: Optional[str] = None,
-    surname: Optional[str] = None,
-    department: Optional[str] = None
+    data: EmployeeSchema
 ) -> List[Employee]:
     """
     Поиск сотрудников по одному или нескольким полям.
@@ -20,17 +17,17 @@ def search_employees(
 
     filters = []
 
-    if name:
-        filters.append(Employee.name.ilike(f'%{name}%'))
+    if data.get('name'):
+        filters.append(Employee.name.ilike(f'%{data['name']}%'))
 
-    if patronymic:
-        filters.append(Employee.patronymic.ilike(f'%{patronymic}%'))
+    if data.get('patronymic'):
+        filters.append(Employee.patronymic.ilike(f'%{data['patronymic']}%'))
 
-    if surname:
-        filters.append(Employee.surname.ilike(f'%{surname}%'))
+    if data.get('surname'):
+        filters.append(Employee.surname.ilike(f'%{data['surname']}%'))
 
-    if department:
-        filters.append(Employee.department == department)
+    if data.get('department'):
+        filters.append(Employee.department == data['department'])
 
     if filters:
         query = query.filter(and_(*filters))
