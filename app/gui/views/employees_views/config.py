@@ -33,6 +33,7 @@ class ShowEmployeeListViewConfig(BaseConfig):
 
     TITLE: str = 'Список сотрудников'
     HEAD_LABLE: str = 'Результаты поиска сотрудников'
+    LISTBOX_WIDTH: int = 0
 
 
 class CreateEmployeeViewConfig(CRUDEmployeeBaseViewConfig):

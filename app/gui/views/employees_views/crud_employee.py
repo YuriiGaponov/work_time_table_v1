@@ -39,9 +39,15 @@ class ShowEmployeeListView(BaseListView):
         self.root_head_lable.config(
             text=ShowEmployeeListViewConfig.HEAD_LABLE
         )
+        self.listbox.config(
+            width=ShowEmployeeListViewConfig.LISTBOX_WIDTH
+        )
 
         for item in self.items:
-            self.listbox.insert(tk.END, item.name)
+            self.listbox.insert(
+                tk.END, f'{item.name} {item.patronymic} '
+                f'{item.surname} {item.department}'
+            )
 
 
 class CreateEmployeeView(CRUDEmployeeBaseView):
