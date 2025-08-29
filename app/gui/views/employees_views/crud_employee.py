@@ -1,5 +1,3 @@
-import tkinter as tk
-
 from app.gui.commands import create_employee, open_list_employee
 from app.gui.views.base import BaseListView
 from .config import (
@@ -39,15 +37,13 @@ class ShowEmployeeListView(BaseListView):
         self.root_head_lable.config(
             text=ShowEmployeeListViewConfig.HEAD_LABLE
         )
-        self.listbox.config(
-            width=ShowEmployeeListViewConfig.LISTBOX_WIDTH
+        self.tree.config(
+            columns=ShowEmployeeListViewConfig.TREE_COLUMNS,
+            show=ShowEmployeeListViewConfig.TREE_SHOW
         )
 
-        for item in self.items:
-            self.listbox.insert(
-                tk.END, f'{item.name} {item.patronymic} '
-                f'{item.surname} {item.department}'
-            )
+        ShowEmployeeListViewConfig.configure_tree(self.tree)
+        ShowEmployeeListViewConfig.add_employees(self.tree, self.items)
 
 
 class CreateEmployeeView(CRUDEmployeeBaseView):

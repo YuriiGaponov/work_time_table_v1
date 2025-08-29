@@ -74,8 +74,8 @@ class BaseListView(BaseModalView):
         super().__init__(top_view)
         self.items = items if items is not None else []
 
-        self.listbox = tk.Listbox(
+        self.tree = ttk.Treeview(
             self.root_content_frame
         )
 
-        self.listbox.pack()
+        self.tree.pack()

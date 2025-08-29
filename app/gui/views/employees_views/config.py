@@ -1,3 +1,8 @@
+import tkinter as tk
+from tkinter import ttk
+from typing import List, Tuple
+
+from app.employees import Employee
 from app.gui.views.base import BaseConfig
 
 
@@ -33,7 +38,28 @@ class ShowEmployeeListViewConfig(BaseConfig):
 
     TITLE: str = 'Список сотрудников'
     HEAD_LABLE: str = 'Результаты поиска сотрудников'
-    LISTBOX_WIDTH: int = 0
+    TREE_COLUMNS: Tuple[str] = ('Имя', 'Отчество', 'Фамилия', 'Отдел')
+    TREE_SHOW: str = 'headings'
+
+    def configure_tree(tree: ttk.Treeview) -> None:
+        """Установить настройки области отображения списка сотрудников."""
+        tree.heading("Имя", text="Имя")
+        tree.heading("Отчество", text="Отчество")
+        tree.heading("Фамилия", text="Фамилия")
+        tree.heading("Отдел", text="Отдел")
+
+    def add_employees(tree: ttk.Treeview, employees: List[Employee]) -> None:
+        """Добавить список сотрудников в область отображения."""
+        for employee in employees:
+            tree.insert(
+                "", tk.END,
+                values=(
+                    employee.name,
+                    employee.patronymic or "",
+                    employee.surname,
+                    employee.department
+                )
+            )
 
 
 class CreateEmployeeViewConfig(CRUDEmployeeBaseViewConfig):
