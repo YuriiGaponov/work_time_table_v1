@@ -1,5 +1,11 @@
 from app.db import session
-from app.employees import EmployeeSchema, employee_exist, save_employee, validate_employee
+from app.employees import (
+    EmployeeSchema,
+    employee_exist,
+    save_employee,
+    search_employees,
+    validate_employee  # временно отключено для дебага
+)
 from app.gui.views import BaseView
 
 
@@ -10,10 +16,24 @@ def open_employee_manager(top_view: BaseView) -> None:
     view.run()
 
 
+def open_search_employee(top_view: BaseView) -> None:
+    """Открыть окно поиска сотрудника."""
+    from app.gui.views.employees_views import SearchEmployeeView
+    view = SearchEmployeeView(top_view)
+    view.run()
+
+
+def open_list_employee(top_view: BaseView, employees: EmployeeSchema) -> None:
+    """Открыть окно со списком результатов поиска сотрудника."""
+    from app.gui.views.employees_views import ShowEmployeeListView
+    view = ShowEmployeeListView(top_view, search_employees(session, employees))
+    view.run()
+
+
 def open_create_employee(top_view: BaseView) -> None:
     """Открыть окно добавления нового сотрудника."""
-    from app.gui.views.employees_views import CreateEmployeeBaseView
-    view = CreateEmployeeBaseView(top_view)
+    from app.gui.views.employees_views import CreateEmployeeView
+    view = CreateEmployeeView(top_view)
     view.run()
 
 
@@ -36,8 +56,7 @@ def create_employee(top_view: BaseView, data: EmployeeSchema) -> None:
     else:
         try:
             # Валидация введенных данных сотрудника
-            validate_employee(data)
+            validate_employee(data)  # временно отключена для дебага.
             save_employee(session, data)
-        # except ValidationError as ve:
         except ValueError as ve:
             open_validation_error(top_view, ve)

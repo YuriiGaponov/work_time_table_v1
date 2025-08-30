@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 
 from app.gui.commands import (
     get_calendar, not_validate_year, open_incorrect_year
@@ -15,17 +16,17 @@ class YearSelectorView(BaseModalView):
         self.root.title(YearSelectorViewConfig.TITLE)
         self.root_head_lable.config(text=YearSelectorViewConfig.HEAD_LABLE)
 
-        self.select_year_lable = tk.Label(
+        self.select_year_lable = ttk.Label(
             self.root_content_frame,
             text=YearSelectorViewConfig.CONTENT_LABLE
         )
-        self.select_year_entry = tk.Entry(self.root_content_frame)
-        self.confirm_button = tk.Button(
+        self.select_year_entry = ttk.Entry(self.root_content_frame)
+        self.confirm_button = ttk.Button(
             self.root_content_frame,
             text=YearSelectorViewConfig.CONFIRM_BUTTON_TEXT,
             command=self.confirm
         )
-        self.clean_button = tk.Button(
+        self.clean_button = ttk.Button(
             self.root_content_frame,
             text=YearSelectorViewConfig.CLEAN_BUTTON_TEXT,
             command=self.clean
