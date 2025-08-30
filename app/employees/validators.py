@@ -28,14 +28,14 @@ class EmployeeValidator(BaseModel):
     @field_validator('name', mode='after')
     def validate_name(cls, value: str) -> str:
         """Валидация имени."""
-        if value != FULL_NAME_PATTERN:
+        if value and not FULL_NAME_PATTERN.match(value):
             raise ValueError(EmployeeValidatorMesseges.NAME_PATTERN_MISMATCH)
         return value
 
     @field_validator('surname', mode='after')
     def validate_surname(cls, value: str) -> str:
         """Валидация фамилии."""
-        if value != FULL_NAME_PATTERN:
+        if value and not FULL_NAME_PATTERN.match(value):
             raise ValueError(
                 EmployeeValidatorMesseges.SURNAME_PATTERN_MISMATCH
             )
@@ -44,11 +44,10 @@ class EmployeeValidator(BaseModel):
     @field_validator('patronymic', mode='after')
     def validate_patronymic(cls, value: Optional[str]) -> Optional[str]:
         """Валидация отчества."""
-        if value:
-            if value != FULL_NAME_PATTERN:
-                raise ValueError(
-                    EmployeeValidatorMesseges.PATRONYMIC_PATTERN_MISMATCH
-                )
+        if value and not FULL_NAME_PATTERN.match(value):
+            raise ValueError(
+                EmployeeValidatorMesseges.PATRONYMIC_PATTERN_MISMATCH
+            )
         return value if value else None
 
 

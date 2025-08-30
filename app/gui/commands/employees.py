@@ -3,8 +3,8 @@ from app.employees import (
     EmployeeSchema,
     employee_exist,
     save_employee,
-    search_employees
-    # validate_employee  # временно отключено для дебага
+    search_employees,
+    validate_employee  # временно отключено для дебага
 )
 from app.gui.views import BaseView
 
@@ -56,7 +56,7 @@ def create_employee(top_view: BaseView, data: EmployeeSchema) -> None:
     else:
         try:
             # Валидация введенных данных сотрудника
-            # validate_employee(data)  # временно отключена для дебага.
+            validate_employee(data)  # временно отключена для дебага.
             save_employee(session, data)
         except ValueError as ve:
             open_validation_error(top_view, ve)
