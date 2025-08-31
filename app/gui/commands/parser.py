@@ -1,7 +1,7 @@
 from app.calendar import save_calendar
 from app.db import session
-from app.parser import parse_calendar, Parser, ParserConfig
 from app.gui.views import BaseView
+from app.parser import parse_calendar, Parser, ParserConfig
 
 
 def open_year_selector(top_view: BaseView) -> None:

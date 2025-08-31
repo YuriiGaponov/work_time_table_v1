@@ -18,6 +18,7 @@ class CalendarDay(Base):
     )
 
     def __init__(self, number, day, month, year, is_weekend):
+        """Конструктор для создания дня года."""
         self.number = number
         self.day = day
         self.month = month

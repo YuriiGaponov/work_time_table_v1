@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 
 
 class BaseConfig():
@@ -18,16 +19,16 @@ class BaseView():
         self.root.title(BaseConfig.TITLE)
 
         # Фрейм для размещения заголовка окна
-        self.root_head_frame = tk.Frame(self.root)
+        self.root_head_frame = ttk.Frame(self.root)
         self.root_head_frame.pack()
 
-        self.root_head_lable = tk.Label(
+        self.root_head_lable = ttk.Label(
             self.root_head_frame, text=BaseConfig.HEAD_LABLE
         )
         self.root_head_lable.grid(row=0, column=0, sticky=BaseConfig.STICKY)
 
         # Фрейм для размещения контента
-        self.root_content_frame = tk.Frame(self.root)
+        self.root_content_frame = ttk.Frame(self.root)
         self.root_content_frame.pack()
 
     def run(self):
@@ -53,7 +54,7 @@ class BaseErrorView(BaseModalView):
         """Инициализация окна."""
         super().__init__(top_view)
 
-        self.confirm_button = tk.Button(
+        self.confirm_button = ttk.Button(
             self.root_content_frame,
             text='ОК',
             command=self.confirm
@@ -63,3 +64,18 @@ class BaseErrorView(BaseModalView):
     def confirm(self):
         """Подтвердить прочтение сообщения об ошибке и закрыть окно."""
         self.root.destroy()
+
+
+class BaseListView(BaseModalView):
+    """Базовый класс окна со списком."""
+
+    def __init__(self, top_view, items=None):
+        """Инициализация окна."""
+        super().__init__(top_view)
+        self.items = items if items is not None else []
+
+        self.tree = ttk.Treeview(
+            self.root_content_frame
+        )
+
+        self.tree.pack()
