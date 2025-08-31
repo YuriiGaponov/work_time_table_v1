@@ -1,4 +1,4 @@
-import tkinter as tk
+from tkinter import ttk
 
 from app.gui.commands import open_employee_manager, open_year_selector
 from .base import BaseView
@@ -14,21 +14,29 @@ class MainView(BaseView):
         self.root_head_lable.config(text=Config.HEAD_LABLE)
 
         # Кнопка запуска парсера производственного календаря
-        self.get_calendar_button = tk.Button(
+        self.get_calendar_button = ttk.Button(
             self.root_content_frame,
             text=Config.GET_CALENDAR_BUTTON_TEXT,
             command=self.year_selector
         )
 
         # Кнопка запуска парсера производственного календаря
-        self.employees_button = tk.Button(
+        self.employees_button = ttk.Button(
             self.root_content_frame,
             text=Config.EMPLOYEES_BUTTON_TEXT,
             command=self.employee_manager
         )
 
+        # Кнопка отображения табеля
+        self.table_button = ttk.Button(
+            self.root_content_frame,
+            text=Config.TABLE_BUTTON_TEXT,
+            command=self.table_manager
+        )
+
         self.get_calendar_button.grid(row=0, column=0, sticky=Config.STICKY)
         self.employees_button.grid(row=0, column=1, sticky=Config.STICKY)
+        self.table_button.grid(row=0, column=2, sticky=Config.STICKY)
 
     def year_selector(self):
         """Открыть окно ввода года."""
@@ -37,3 +45,6 @@ class MainView(BaseView):
     def employee_manager(self):
         """Открыть окно управления данными сотрудников."""
         open_employee_manager(self)
+
+    def table_manager(self):
+        """Открыть окно управления табелями."""
