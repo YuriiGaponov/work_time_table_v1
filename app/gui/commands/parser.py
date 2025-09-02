@@ -13,7 +13,7 @@ def open_year_selector(top_view: BaseView) -> None:
 
 def open_incorrect_year(info: str, top_view: BaseView) -> None:
     """Открыть окно с указанием ошибки ввода года."""
-    from ..views import IncorrectYearView
+    from app.gui.views import IncorrectYearView
     incorrect_year = IncorrectYearView(top_view)
     incorrect_year.root_head_lable.config(text=info)
     incorrect_year.run()

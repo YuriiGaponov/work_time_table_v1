@@ -1,6 +1,10 @@
 from tkinter import ttk
 
-from app.gui.commands import open_employee_manager, open_year_selector
+from app.gui.commands import (
+    open_employee_manager,
+    open_table,
+    open_year_selector
+)
 from .base import BaseView
 from .config import MainViewConfig as Config
 
@@ -48,3 +52,4 @@ class MainView(BaseView):
 
     def table_manager(self):
         """Открыть окно управления табелями."""
+        open_table(self)
