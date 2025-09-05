@@ -2,7 +2,14 @@ from app.gui.views.base import BaseConfig
 
 
 class TableViewConfig(BaseConfig):
-    """Настройки окон модуля парсинга календаря."""
+    """Настройки окна отображения табеля."""
 
     TITLE: str = 'Табель учета рабочего времени'
     HEAD_LABLE: str = 'Табель учета рабочего времени'
+
+
+class TableSelectorViewConfig(BaseConfig):
+    """Настройки окна отображения табеля."""
+
+    TITLE: str = 'Открыть табель'
+    HEAD_LABLE: str = 'Выберите год, месяц, отдел'
