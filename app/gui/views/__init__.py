@@ -1,10 +1,10 @@
-from .base import BaseView
-from .parser_views import IncorrectYearView, YearSelectorView
+from .base import BaseView, BaseModalView
+from .parser_views import YearSelectorView
 from .table_views import TableView, TableSelectorView
 
 __all__ = [
     'BaseView',
-    'IncorrectYearView',
+    'BaseModalView',
     'TableView',
     'TableSelectorView',
     'YearSelectorView'

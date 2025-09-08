@@ -5,9 +5,10 @@ from .employees import (
     open_list_employee,
     open_search_employee
 )
-from .parser import get_calendar, open_incorrect_year, open_year_selector
+from .parser import get_calendar
 from .validators import not_validate_year
 from .table import open_table
+from .views import open_info_view, open_modal_view
 
 __all__ = [
     'create_employee',
@@ -15,9 +16,9 @@ __all__ = [
     'not_validate_year',
     'open_create_employee',
     'open_employee_manager',
-    'open_incorrect_year',
     'open_list_employee',
     'open_search_employee',
     'open_table',
-    'open_year_selector'
+    'open_info_view',
+    'open_modal_view'
 ]

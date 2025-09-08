@@ -3,10 +3,11 @@ from tkinter import ttk
 from app.gui.commands import (
     open_employee_manager,
     open_table,
-    open_year_selector
+    open_modal_view
 )
 from .base import BaseView
 from .config import MainViewConfig as Config
+from .parser_views import YearSelectorView
 
 
 class MainView(BaseView):
@@ -44,7 +45,7 @@ class MainView(BaseView):
 
     def year_selector(self):
         """Открыть окно ввода года."""
-        open_year_selector(self)
+        open_modal_view(self, YearSelectorView)
 
     def employee_manager(self):
         """Открыть окно управления данными сотрудников."""
