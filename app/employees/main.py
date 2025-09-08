@@ -18,16 +18,16 @@ def search_employees(
     filters = []
 
     if data.get('name'):
-        filters.append(Employee.name.ilike(f'%{data['name']}%'))
+        filters.append(Employee.name.ilike(f'%{data["name"]}%'))
 
     if data.get('patronymic'):
-        filters.append(Employee.patronymic.ilike(f'%{data['patronymic']}%'))
+        filters.append(Employee.patronymic.ilike(f'%{data["patronymic"]}%'))
 
     if data.get('surname'):
-        filters.append(Employee.surname.ilike(f'%{data['surname']}%'))
+        filters.append(Employee.surname.ilike(f'%{data["surname"]}%'))
 
     if data.get('department'):
-        filters.append(Employee.department == data['department'])
+        filters.append(Employee.department == data["department"])
 
     if filters:
         query = query.filter(and_(*filters))

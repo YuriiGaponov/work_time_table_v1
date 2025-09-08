@@ -1,3 +1,7 @@
+"""
+Модуль настроек окон для работы с табелями.
+"""
+
 from app.gui.views.base import BaseConfig
 
 
@@ -9,7 +13,7 @@ class TableViewConfig(BaseConfig):
 
 
 class TableSelectorViewConfig(BaseConfig):
-    """Настройки окна отображения табеля."""
+    """Настройки окна выбора параметров табеля."""
 
     TITLE: str = 'Открыть табель'
     HEAD_LABLE: str = 'Выберите год, месяц, отдел'

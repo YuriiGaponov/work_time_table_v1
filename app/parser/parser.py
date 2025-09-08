@@ -7,7 +7,8 @@ from typing import Annotated, List, Optional, Tuple
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 
-from .config import ConsultantPlusParserConfig
+from app.core import app_settings as settings
+from .constants import ConsultantPlusParserConfig
 from .exceptions import ParseException
 from .logger import logger
 
@@ -47,7 +48,10 @@ class ConsultantPlusParser():
 
         return self._soup
 
-    def _get_year(self) -> Annotated[int, '2000 <= value <= 2100']:
+    def _get_year(self) -> Annotated[
+        int,
+        f'{settings.MIN_PARSE_YEAR} <= value <= {settings.MAX_PARSE_YEAR}'
+    ]:
         """Возвращает год календаря."""
         try:
             year_tag: Tag = self._get_soup().find('h1')

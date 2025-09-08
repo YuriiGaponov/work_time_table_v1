@@ -1,20 +1,17 @@
 from typing import List, Tuple
 
-from .config import ConsultantPlusParserConfig
 from .interfaces import ParserInterface
-from .parser import ConsultantPlusParser
-
-# Конфигурация парсера.
-parser_config = ConsultantPlusParserConfig()
-
-# Парсер производственного календаря.
-parser = ConsultantPlusParser(parser_config)
+from .services import get_parser
+from .settings import Settings
 
 
 def parse_calendar(
-    parser: ParserInterface
+    year: str,
 ) -> List[Tuple[int, int, str, int, bool]]:
     """Главная функция парсера."""
+    parser: ParserInterface = get_parser(
+        year, Settings.PARSER_CONFIG, Settings.PARSER
+    )
     return parser.get_calendar()
 
 

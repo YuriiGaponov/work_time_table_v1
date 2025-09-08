@@ -1,10 +1,15 @@
-from .base import BaseView
-from .parser_views import IncorrectYearView, YearSelectorView
+"""
+Пакет классов окон приложения.
+"""
+
+from .base import BaseView, BaseListView, BaseModalView
+from .parser_views import YearSelectorView
 from .table_views import TableView, TableSelectorView
 
 __all__ = [
     'BaseView',
-    'IncorrectYearView',
+    'BaseListView',
+    'BaseModalView',
     'TableView',
     'TableSelectorView',
     'YearSelectorView'

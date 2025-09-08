@@ -1,62 +1,48 @@
+"""
+Команды взаимодействия графического интерфейса с модулем работы с сотрудниками.
+"""
+
+from pydantic import ValidationError
+from typing import Callable
+
 from app.db import session
 from app.employees import (
     EmployeeSchema,
     employee_exist,
     save_employee,
-    search_employees,
-    validate_employee  # временно отключено для дебага
+    validate_employee
 )
+from app.gui.views.config import ErrorMessage
 from app.gui.views import BaseView
+from .views import open_info_view
 
 
-def open_employee_manager(top_view: BaseView) -> None:
-    """Открыть окно управления данными сотрудников."""
-    from app.gui.views.employees_views import EmployeeManagerView
-    view = EmployeeManagerView(top_view)
-    view.run()
-
-
-def open_search_employee(top_view: BaseView) -> None:
-    """Открыть окно поиска сотрудника."""
-    from app.gui.views.employees_views import SearchEmployeeView
-    view = SearchEmployeeView(top_view)
-    view.run()
-
-
-def open_list_employee(top_view: BaseView, employees: EmployeeSchema) -> None:
-    """Открыть окно со списком результатов поиска сотрудника."""
-    from app.gui.views.employees_views import ShowEmployeeListView
-    view = ShowEmployeeListView(top_view, search_employees(session, employees))
-    view.run()
-
-
-def open_create_employee(top_view: BaseView) -> None:
-    """Открыть окно добавления нового сотрудника."""
-    from app.gui.views.employees_views import CreateEmployeeView
-    view = CreateEmployeeView(top_view)
-    view.run()
-
-
-def open_validation_error(top_view: BaseView, message: str) -> None:
-    """Открыть окно с сообщением об ошибке валидаци данных сотрудника."""
-    from app.gui.views.employees_views import EmployeeExistView
-    view = EmployeeExistView(top_view)
-    view.root_head_lable.config(text=message)
-    view.run()
-
-
-def create_employee(top_view: BaseView, data: EmployeeSchema) -> None:
-    """Создать сотрудника и добавить в БД."""
+def create_employee(
+        top_view: BaseView,
+        data: EmployeeSchema,
+        ErrorViewClass: Callable
+) -> None:
+    """
+    Создать сотрудника и добавить в БД.
+    При возникновении ошибок открыть окно с сообщением об ошибке.
+    """
     # Проверка существования сотрудника
     if employee_exist(session, data):
-        open_validation_error(
-            top_view,
-            'Сотрудник с такими данными уже существует!'
-        )
+        open_info_view(top_view, ErrorViewClass, ErrorMessage.EMPLOYEE_EXIST)
     else:
         try:
             # Валидация введенных данных сотрудника
-            validate_employee(data)  # временно отключена для дебага.
+            validate_employee(data)
             save_employee(session, data)
-        except ValueError as ve:
-            open_validation_error(top_view, ve)
+        except (ValueError, ValidationError) as e:
+            if isinstance(e, ValidationError):
+                # Извлекаем все сообщения об ошибках
+                errors = e.errors()
+                error_messages = [error['msg'] for error in errors]
+                # Формируем объединенное сообщение
+                message = '\n'.join(error_messages)
+            else:
+                args = e.args
+                message = args[0] if args else "Неизвестная ошибка"
+
+            open_info_view(top_view, ErrorViewClass, message)

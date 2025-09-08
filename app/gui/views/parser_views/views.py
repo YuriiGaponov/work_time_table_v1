@@ -1,11 +1,18 @@
+"""
+Модуль окон интерфейса интерфейса для
+взаимодействия с модулем парсинга.
+"""
+
 import tkinter as tk
 from tkinter import ttk
 
 from app.gui.commands import (
-    get_calendar, not_validate_year, open_incorrect_year
+    get_calendar,
+    not_validate_year,
+    open_info_view
 )
-from app.gui.views.base import BaseModalView
-from .config import YearSelectorViewConfig
+from app.gui.views.base import BaseModalView, BaseErrorView
+from .config import IncorrectYearViewConfig, YearSelectorViewConfig
 
 
 class YearSelectorView(BaseModalView):
@@ -58,7 +65,7 @@ class YearSelectorView(BaseModalView):
         year = self.select_year_entry.get()
         validation = not_validate_year(year)
         if validation:
-            open_incorrect_year(validation, self)
+            open_info_view(self, IncorrectYearView, validation)
         else:
             get_calendar(year)
             self.root.destroy()
@@ -66,3 +73,11 @@ class YearSelectorView(BaseModalView):
     def clean(self):
         """Очищает поле ввода года."""
         self.select_year_entry.delete(0, tk.END)
+
+
+class IncorrectYearView(BaseErrorView):
+    """Информационное окно с сообщение о неверном вводе года."""
+
+    def __init__(self, top_view):
+        super().__init__(top_view)
+        self.root.title(IncorrectYearViewConfig.TITLE)

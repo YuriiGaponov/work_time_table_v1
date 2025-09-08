@@ -1,11 +1,13 @@
+"""
+Модуль главного окна работы со списком сотрудников.
+"""
+
 from tkinter import ttk
 
-from app.gui.commands import (
-    open_create_employee,
-    open_search_employee
-)
+from app.gui.commands import open_modal_view
 from app.gui.views.base import BaseModalView
 from .config import EmployeeManagerViewConfig
+from .crud_employee import CreateEmployeeView, SearchEmployeeView
 
 
 class EmployeeManagerView(BaseModalView):
@@ -20,12 +22,12 @@ class EmployeeManagerView(BaseModalView):
         self.add_employee_button = ttk.Button(
             self.root_content_frame,
             text=EmployeeManagerViewConfig.ADD_EMPLOYEE_BUTTON_TEXT,
-            command=self.add_employee_view
+            command=self.add_employee
         )
         self.search_employee_button = ttk.Button(
             self.root_content_frame,
             text=EmployeeManagerViewConfig.SEARCH_EMPLOYEE_BUTTON_TEXT,
-            command=self.search_employee_view
+            command=self.search_employee
         )
 
         self.add_employee_button.grid(
@@ -39,10 +41,10 @@ class EmployeeManagerView(BaseModalView):
             sticky=EmployeeManagerViewConfig.STICKY
         )
 
-    def add_employee_view(self):
+    def add_employee(self) -> None:
         """Открыть окно добавления сотрудника в БД."""
-        open_create_employee(self)
+        open_modal_view(self, CreateEmployeeView)
 
-    def search_employee_view(self):
+    def search_employee(self) -> None:
         """Открыть окно поиска сотрудника в БД."""
-        open_search_employee(self)
+        open_modal_view(self, SearchEmployeeView)

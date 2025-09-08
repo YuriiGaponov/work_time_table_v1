@@ -1,4 +1,7 @@
-from .incorrect_year import IncorrectYearView
-from .year_selector import YearSelectorView
+"""
+Пакет для работы с окнами интерфейса, взаимодействующими с модулем парсинга.
+"""
 
-__all__ = ['IncorrectYearView', 'YearSelectorView']
+from .views import YearSelectorView
+
+__all__ = ['YearSelectorView']

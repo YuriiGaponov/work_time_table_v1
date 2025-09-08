@@ -1,12 +1,15 @@
+"""
+Модуль главного окна приложения.
+"""
+
 from tkinter import ttk
 
-from app.gui.commands import (
-    open_employee_manager,
-    open_table,
-    open_year_selector
-)
+from app.gui.commands import open_modal_view
 from .base import BaseView
 from .config import MainViewConfig as Config
+from .employees_views import EmployeeManagerView
+from .parser_views import YearSelectorView
+from .table_views import TableSelectorView
 
 
 class MainView(BaseView):
@@ -44,12 +47,12 @@ class MainView(BaseView):
 
     def year_selector(self):
         """Открыть окно ввода года."""
-        open_year_selector(self)
+        open_modal_view(self, YearSelectorView)
 
     def employee_manager(self):
         """Открыть окно управления данными сотрудников."""
-        open_employee_manager(self)
+        open_modal_view(self, EmployeeManagerView)
 
     def table_manager(self):
         """Открыть окно управления табелями."""
-        open_table(self)
+        open_modal_view(self, TableSelectorView)
