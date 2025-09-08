@@ -1,5 +1,10 @@
-from app.gui.commands import create_employee, open_list_employee
+from app.db import session
+from app.gui.commands import (
+    create_employee,
+    search_employees
+)
 from app.gui.views.base import BaseListView
+from app.gui.commands import open_search_view
 from .config import (
     CreateEmployeeViewConfig,
     SearchEmployeeViewConfig,
@@ -24,7 +29,11 @@ class SearchEmployeeView(CRUDEmployeeBaseView):
 
     def confirm(self):
         """Найти сотрудника."""
-        open_list_employee(self, super().confirm())
+        open_search_view(
+            self,
+            ShowEmployeeListView,
+            search_employees(session, super().confirm())
+        )
 
 
 class ShowEmployeeListView(BaseListView):
