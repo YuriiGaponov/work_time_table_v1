@@ -1,3 +1,8 @@
+"""
+Модуль окон интерфейса интерфейса для
+взаимодействия с модулем парсинга.
+"""
+
 import tkinter as tk
 from tkinter import ttk
 
@@ -60,7 +65,7 @@ class YearSelectorView(BaseModalView):
         year = self.select_year_entry.get()
         validation = not_validate_year(year)
         if validation:
-            open_info_view(validation, self, IncorrectYearView)
+            open_info_view(self, IncorrectYearView, validation)
         else:
             get_calendar(year)
             self.root.destroy()

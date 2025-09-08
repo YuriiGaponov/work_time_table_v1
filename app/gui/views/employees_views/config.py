@@ -1,3 +1,7 @@
+"""
+Модуль настроек окон для работы с сотрудниками.
+"""
+
 import tkinter as tk
 from tkinter import ttk
 from typing import List, Tuple
@@ -70,10 +74,10 @@ class CreateEmployeeViewConfig(CRUDEmployeeBaseViewConfig):
     COMFIRM_BUTTON_TEXT: str = 'Добавить'
 
 
-class EmployeeExistViewConfig(BaseConfig):
+class EmployeeErrorViewConfig(BaseConfig):
     """
-    Настройки информационного окна с сообщением с сообщение о существовании
-    сотрудника с вводимыми данными.
+    Настройки информационного окна с сообщением об ошибке
+    создания сотрудника с вводимыми данными.
     """
 
-    TITLE: str = 'Сотрудник уже существует.'
+    TITLE: str = 'Ошибка создания сотрудника.'

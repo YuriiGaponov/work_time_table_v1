@@ -20,9 +20,9 @@ def open_modal_view(
 
 
 def open_info_view(
-        info: str,
         top_view: BaseView,
-        ViewModel: BaseModalView
+        ViewModel: BaseModalView,
+        info: str = None
 ) -> None:
     """Открыть вызываемое окно с сообщением."""
     view: BaseModalView = ViewModel(top_view)

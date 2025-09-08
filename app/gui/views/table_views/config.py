@@ -1,3 +1,7 @@
+"""
+Модуль настроек окон для работы с табелями.
+"""
+
 from app.gui.views.base import BaseConfig
 
 

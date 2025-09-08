@@ -1,3 +1,7 @@
+"""
+Модуль главного окна приложения.
+"""
+
 from tkinter import ttk
 
 from app.gui.commands import open_modal_view

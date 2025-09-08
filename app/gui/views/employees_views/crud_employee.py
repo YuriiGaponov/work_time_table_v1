@@ -1,3 +1,8 @@
+"""
+Модуль окон интерфеса для CRUD операций с сотрудниками
+поиска данных сотрудников в БД.
+"""
+
 from app.db import session
 from app.gui.commands import (
     create_employee,
@@ -11,6 +16,7 @@ from .config import (
     ShowEmployeeListViewConfig
 )
 from .crud_base_employee import CRUDEmployeeBaseView
+from .validation_error import EmployeeErrorView
 
 
 class SearchEmployeeView(CRUDEmployeeBaseView):
@@ -71,4 +77,8 @@ class CreateEmployeeView(CRUDEmployeeBaseView):
 
     def confirm(self):
         """Создать сотрудника."""
-        create_employee(self, super().confirm())
+        create_employee(
+            self,
+            super().confirm(),
+            EmployeeErrorView
+        )

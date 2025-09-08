@@ -1,3 +1,8 @@
+"""
+Модуль окон интерфеса для взаимодействия с модулем
+обработки табелей.
+"""
+
 from app.gui.views.base import BaseListView, BaseModalView
 from .config import TableViewConfig, TableSelectorViewConfig
 

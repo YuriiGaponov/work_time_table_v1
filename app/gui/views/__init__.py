@@ -1,3 +1,7 @@
+"""
+Пакет классов окон приложения.
+"""
+
 from .base import BaseView, BaseListView, BaseModalView
 from .parser_views import YearSelectorView
 from .table_views import TableView, TableSelectorView
