@@ -1,7 +1,7 @@
 from app.calendar import save_calendar
 from app.db import session
 from app.gui.views import BaseView
-from app.parser import parse_calendar, Parser, ParserConfig
+from app.parser import parse_calendar
 
 
 def open_year_selector(top_view: BaseView) -> None:
@@ -19,19 +19,9 @@ def open_incorrect_year(info: str, top_view: BaseView) -> None:
     incorrect_year.run()
 
 
-def get_calendar_url(year: str) -> ParserConfig:
-    """Добавляет в url парсера год календаря."""
-    config = ParserConfig()
-    main_url = config.MAIN_URL
-    config.MAIN_URL = f'{main_url}{year}/'
-    return config
-
-
-def get_parser(year: str) -> Parser:
-    """Создает экземпляр парсера производственного календаря."""
-    return Parser(get_calendar_url(year))
-
-
 def get_calendar(year: str) -> None:
-    """Запуск парсера производственного календаря."""
-    save_calendar(session, parse_calendar(get_parser(year)))
+    """
+    Запуск парсера производственного календаря,
+    сохранение дней календаря в БД.
+    """
+    save_calendar(session, parse_calendar(year))

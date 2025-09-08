@@ -175,3 +175,4 @@ cython_debug/
 
 # drawio
 *.drawio.bkp
+*.drawio.dtmp

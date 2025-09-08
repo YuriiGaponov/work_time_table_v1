@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2" pages="3">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2" pages="4">
   <diagram name="схема приложения" id="4TbhmdWZxxpxIqHuFGvc">
     <mxGraphModel dx="2255" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -125,6 +125,32 @@
             <mxPoint x="360" y="490" as="sourcePoint" />
             <mxPoint x="440" y="230" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="3tP0H_-g3h6vShk4NOm-" name="gui">
+    <mxGraphModel dx="1426" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vLGexPX0HUiYpFAuuH6R-1" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="80" y="110" width="680" height="680" as="geometry" />
+        </mxCell>
+        <mxCell id="vLGexPX0HUiYpFAuuH6R-2" value="gui" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="384" y="110" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vLGexPX0HUiYpFAuuH6R-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="340" width="120" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="vLGexPX0HUiYpFAuuH6R-4" value="views" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="150" y="355" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vLGexPX0HUiYpFAuuH6R-5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="530" y="340" width="130" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="vLGexPX0HUiYpFAuuH6R-6" value="commands" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="560" y="355" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
