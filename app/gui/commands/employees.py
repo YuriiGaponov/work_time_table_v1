@@ -1,19 +1,16 @@
+"""
+Команды взаимодействия графического интерфейса с модулем работы с сотрудниками.
+"""
+
 from app.db import session
 from app.employees import (
     EmployeeSchema,
     employee_exist,
     save_employee,
     search_employees,
-    validate_employee  # временно отключено для дебага
+    validate_employee
 )
 from app.gui.views import BaseView
-
-
-def open_employee_manager(top_view: BaseView) -> None:
-    """Открыть окно управления данными сотрудников."""
-    from app.gui.views.employees_views import EmployeeManagerView
-    view = EmployeeManagerView(top_view)
-    view.run()
 
 
 def open_search_employee(top_view: BaseView) -> None:

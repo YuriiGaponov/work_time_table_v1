@@ -1,3 +1,7 @@
+"""
+Команды взаимодействия графического интерфейса с модулем работы с парсером.
+"""
+
 from app.calendar import save_calendar
 from app.db import session
 from app.parser import parse_calendar

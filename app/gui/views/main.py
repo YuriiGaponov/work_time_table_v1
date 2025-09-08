@@ -1,13 +1,11 @@
 from tkinter import ttk
 
-from app.gui.commands import (
-    open_employee_manager,
-    open_table,
-    open_modal_view
-)
+from app.gui.commands import open_modal_view
 from .base import BaseView
 from .config import MainViewConfig as Config
+from .employees_views import EmployeeManagerView
 from .parser_views import YearSelectorView
+from .table_views import TableSelectorView
 
 
 class MainView(BaseView):
@@ -49,8 +47,8 @@ class MainView(BaseView):
 
     def employee_manager(self):
         """Открыть окно управления данными сотрудников."""
-        open_employee_manager(self)
+        open_modal_view(self, EmployeeManagerView)
 
     def table_manager(self):
         """Открыть окно управления табелями."""
-        open_table(self)
+        open_modal_view(self, TableSelectorView)

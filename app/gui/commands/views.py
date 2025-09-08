@@ -1,3 +1,7 @@
+"""
+Команды открытия окон приложения.
+"""
+
 from app.gui.views import BaseView, BaseModalView
 
 
