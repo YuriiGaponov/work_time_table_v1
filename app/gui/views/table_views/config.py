@@ -17,3 +17,6 @@ class TableSelectorViewConfig(BaseConfig):
 
     TITLE: str = 'Открыть табель'
     HEAD_LABLE: str = 'Выберите год, месяц, отдел'
+    YEAR_ENTRY_LABEL_TEXT: str = 'Выберите год'
+    MONTH_ENTRY_LABEL_TEXT: str = 'Выберите месяц'
+    DEPARTMENT_ENTRY_LABEL_TEXT: str = 'Выберите отдел'
