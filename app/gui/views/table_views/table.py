@@ -3,8 +3,10 @@
 обработки табелей.
 """
 
+import tkinter as tk
 from tkinter import ttk
 
+from app.gui.commands import open_modal_view
 from app.gui.views.base import BaseListView, BaseModalView, base_grid
 from .config import TableViewConfig, TableSelectorViewConfig
 
@@ -67,11 +69,15 @@ class TableSelectorView(BaseModalView):
         base_grid(self.open_tale_button, 3, 0, TableSelectorViewConfig)
         base_grid(self.clean_button, 3, 1, TableSelectorViewConfig)
 
-    def open_table():
+    def open_table(self):
         """Открывает табель с выбранными параметрами."""
+        open_modal_view(self, TableView)
 
-    def clean():
+    def clean(self):
         """Очищает заполненные поля выбора параметров."""
+        self.year_entry.delete(0, tk.END)
+        self.month_entry.delete(0, tk.END)
+        self.department_entry.delete(0, tk.END)
 
 
 class TableView(BaseListView):
