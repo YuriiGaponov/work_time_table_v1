@@ -1,6 +1,7 @@
 """
 Классы базовых типов окон приложения,
 используемые для наследования во вложенных пакетах.
+Функции обработки виджетов интерфейса, используемые в нескольких модулях.
 """
 
 import tkinter as tk
@@ -84,3 +85,18 @@ class BaseListView(BaseModalView):
         )
 
         self.tree.pack()
+
+
+def base_grid(
+        widget: tk.Widget,
+        row: int,
+        column: int,
+        config: BaseConfig
+) -> None:
+    """
+    Базовая функция размещения виджета.
+    Применяется для размещения виджета в сетке после его объявления.
+    """
+    widget.grid(
+        row=row, column=column, sticky=config.STICKY
+    )

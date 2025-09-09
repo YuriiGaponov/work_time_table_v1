@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import ttk
 
 from app.employees import EmployeeSchema
-from app.gui.views.base import BaseModalView
+from app.gui.views.base import BaseModalView, base_grid
 from .config import CRUDEmployeeBaseViewConfig
 
 
@@ -65,46 +65,19 @@ class CRUDEmployeeBaseView(BaseModalView):
             command=self.clean
         )
 
-        self.name_entry_label.grid(
-            row=0, column=0,
-            sticky=CRUDEmployeeBaseViewConfig.STICKY
-        )
-        self.name_entry.grid(
-            row=0, column=1,
-            sticky=CRUDEmployeeBaseViewConfig.STICKY
-        )
-        self.patronymic_entry_label.grid(
-            row=1, column=0,
-            sticky=CRUDEmployeeBaseViewConfig.STICKY
-        )
-        self.patronymic_entry.grid(
-            row=1, column=1,
-            sticky=CRUDEmployeeBaseViewConfig.STICKY
-        )
-        self.surname_entry_label.grid(
-            row=2, column=0,
-            sticky=CRUDEmployeeBaseViewConfig.STICKY
-        )
-        self.surname_entry.grid(
-            row=2, column=1,
-            sticky=CRUDEmployeeBaseViewConfig.STICKY
-        )
-        self.department_entry_label.grid(
-            row=3, column=0,
-            sticky=CRUDEmployeeBaseViewConfig.STICKY
-        )
-        self.department_entry.grid(
-            row=3, column=1,
-            sticky=CRUDEmployeeBaseViewConfig.STICKY
-        )
-        self.confirm_button.grid(
-            row=4, column=0,
-            sticky=CRUDEmployeeBaseViewConfig.STICKY
-        )
-        self.clean_button.grid(
-            row=4, column=1,
-            sticky=CRUDEmployeeBaseViewConfig.STICKY
-        )
+        # Расположение виджетов.
+        base_grid(self.name_entry_label, 0, 0, CRUDEmployeeBaseViewConfig)
+        base_grid(self.name_entry, 0, 1, CRUDEmployeeBaseViewConfig)
+        base_grid(self.patronymic_entry_label, 1, 0,
+                  CRUDEmployeeBaseViewConfig)
+        base_grid(self.patronymic_entry, 1, 1, CRUDEmployeeBaseViewConfig)
+        base_grid(self.surname_entry_label, 2, 0, CRUDEmployeeBaseViewConfig)
+        base_grid(self.surname_entry, 2, 1, CRUDEmployeeBaseViewConfig)
+        base_grid(self.department_entry_label, 3, 0,
+                  CRUDEmployeeBaseViewConfig)
+        base_grid(self.department_entry, 3, 1, CRUDEmployeeBaseViewConfig)
+        base_grid(self.confirm_button, 4, 0, CRUDEmployeeBaseViewConfig)
+        base_grid(self.clean_button, 4, 1, CRUDEmployeeBaseViewConfig)
 
     def confirm(self) -> EmployeeSchema:
         """Возвращает значения заполненных полей."""

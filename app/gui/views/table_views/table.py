@@ -1,11 +1,11 @@
 """
-Модуль окон интерфеса для взаимодействия с модулем
+Модуль окон интерфеса для взаимодействия с пакетом
 обработки табелей.
 """
 
 from tkinter import ttk
 
-from app.gui.views.base import BaseListView, BaseModalView
+from app.gui.views.base import BaseListView, BaseModalView, base_grid
 from .config import TableViewConfig, TableSelectorViewConfig
 
 
@@ -46,46 +46,32 @@ class TableSelectorView(BaseModalView):
         )
         # Кнопка открытия табеля.
         self.open_tale_button = ttk.Button(
-            self.root_content_frame
+            self.root_content_frame,
+            text=TableSelectorViewConfig.OPEN_TABLE_BUTTON_TEXT,
+            command=self.open_table
         )
         # Кнопка очистки полей.
         self.clean_button = ttk.Button(
-            self.root_content_frame
+            self.root_content_frame,
+            text=TableSelectorViewConfig.CLEAN_BUTTON_TEXT,
+            command=self.clean
         )
 
         # Расположение виджетов.
-        self.year_entry_label.grid(
-            row=0, column=0,
-            sticky=TableSelectorViewConfig.STICKY
-        )
-        self.year_entry.grid(
-            row=0, column=1,
-            sticky=TableSelectorViewConfig.STICKY
-        )
-        self.month_entry_label.grid(
-            row=1, column=0,
-            sticky=TableSelectorViewConfig.STICKY
-        )
-        self.month_entry.grid(
-            row=1, column=1,
-            sticky=TableSelectorViewConfig.STICKY
-        )
-        self.department_entry_label.grid(
-            row=2, column=0,
-            sticky=TableSelectorViewConfig.STICKY
-        )
-        self.department_entry.grid(
-            row=2, column=1,
-            sticky=TableSelectorViewConfig.STICKY
-        )
-        self.open_tale_button.grid(
-            row=3, column=0,
-            sticky=TableSelectorViewConfig.STICKY
-        )
-        self.clean_button.grid(
-            row=3, column=1,
-            sticky=TableSelectorViewConfig.STICKY
-        )
+        base_grid(self.year_entry_label, 0, 0, TableSelectorViewConfig)
+        base_grid(self.year_entry, 0, 1, TableSelectorViewConfig)
+        base_grid(self.month_entry_label, 1, 0, TableSelectorViewConfig)
+        base_grid(self.month_entry, 1, 1, TableSelectorViewConfig)
+        base_grid(self.department_entry_label, 2, 0, TableSelectorViewConfig)
+        base_grid(self.department_entry, 2, 1, TableSelectorViewConfig)
+        base_grid(self.open_tale_button, 3, 0, TableSelectorViewConfig)
+        base_grid(self.clean_button, 3, 1, TableSelectorViewConfig)
+
+    def open_table():
+        """Открывает табель с выбранными параметрами."""
+
+    def clean():
+        """Очищает заполненные поля выбора параметров."""
 
 
 class TableView(BaseListView):

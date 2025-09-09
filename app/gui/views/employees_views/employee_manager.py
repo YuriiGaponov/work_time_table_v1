@@ -1,11 +1,11 @@
 """
-Модуль главного окна работы со списком сотрудников.
+Модуль главного окна работы с данными сотрудников.
 """
 
 from tkinter import ttk
 
 from app.gui.commands import open_modal_view
-from app.gui.views.base import BaseModalView
+from app.gui.views.base import BaseModalView, base_grid
 from .config import EmployeeManagerViewConfig
 from .crud_employee import CreateEmployeeView, SearchEmployeeView
 
@@ -30,16 +30,9 @@ class EmployeeManagerView(BaseModalView):
             command=self.search_employee
         )
 
-        self.add_employee_button.grid(
-            row=0,
-            column=0,
-            sticky=EmployeeManagerViewConfig.STICKY
-        )
-        self.search_employee_button.grid(
-            row=1,
-            column=0,
-            sticky=EmployeeManagerViewConfig.STICKY
-        )
+        # Расположение виджетов.
+        base_grid(self.add_employee_button, 0, 0, EmployeeManagerViewConfig)
+        base_grid(self.search_employee_button, 1, 0, EmployeeManagerViewConfig)
 
     def add_employee(self) -> None:
         """Открыть окно добавления сотрудника в БД."""

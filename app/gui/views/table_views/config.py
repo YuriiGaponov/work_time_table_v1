@@ -20,3 +20,5 @@ class TableSelectorViewConfig(BaseConfig):
     YEAR_ENTRY_LABEL_TEXT: str = 'Выберите год'
     MONTH_ENTRY_LABEL_TEXT: str = 'Выберите месяц'
     DEPARTMENT_ENTRY_LABEL_TEXT: str = 'Выберите отдел'
+    OPEN_TABLE_BUTTON_TEXT: str = 'Открыть табель'
+    CLEAN_BUTTON_TEXT: str = 'Очистить'

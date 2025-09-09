@@ -11,7 +11,7 @@ from app.gui.commands import (
     not_validate_year,
     open_info_view
 )
-from app.gui.views.base import BaseModalView, BaseErrorView
+from app.gui.views.base import BaseModalView, BaseErrorView, base_grid
 from .config import IncorrectYearViewConfig, YearSelectorViewConfig
 
 
@@ -39,26 +39,11 @@ class YearSelectorView(BaseModalView):
             command=self.clean
         )
 
-        self.select_year_lable.grid(
-            row=0,
-            column=0,
-            sticky=YearSelectorViewConfig.STICKY
-        )
-        self.select_year_entry.grid(
-            row=0,
-            column=1,
-            sticky=YearSelectorViewConfig.STICKY
-        )
-        self.confirm_button.grid(
-            row=1,
-            column=0,
-            sticky=YearSelectorViewConfig.STICKY
-        )
-        self.clean_button.grid(
-            row=1,
-            column=1,
-            sticky=YearSelectorViewConfig.STICKY
-        )
+        # Расположение виджетов.
+        base_grid(self.select_year_lable, 0, 0, YearSelectorViewConfig)
+        base_grid(self.select_year_entry, 0, 1, YearSelectorViewConfig)
+        base_grid(self.confirm_button, 1, 0, YearSelectorViewConfig)
+        base_grid(self.clean_button, 1, 1, YearSelectorViewConfig)
 
     def confirm(self):
         """Получает год из поля ввода и передает его в парсер."""
