@@ -6,7 +6,9 @@
 import tkinter as tk
 from tkinter import ttk
 
-from app.gui.commands import open_modal_view
+from app.db import session
+from app.gui.commands import open_modal_view, open_search_view
+from app.gui.commands.table import get_table  # исправить импорт
 from app.gui.views.base import BaseListView, BaseModalView, base_grid
 from .config import TableViewConfig, TableSelectorViewConfig
 
@@ -71,7 +73,8 @@ class TableSelectorView(BaseModalView):
 
     def open_table(self):
         """Открывает табель с выбранными параметрами."""
-        open_modal_view(self, TableView)
+        # open_modal_view(self, TableView)
+        open_search_view(self, TableView, get_table(session, self.year_entry.get(), self.month_entry.get(), self.department_entry.get()))  # для отладки
 
     def clean(self):
         """Очищает заполненные поля выбора параметров."""
