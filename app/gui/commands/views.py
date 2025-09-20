@@ -38,3 +38,13 @@ def open_search_view(
     """Открыть окно поиска."""
     view = ViewModel(top_view, search_criteria)
     view.run()
+
+
+def open_table_view(
+        top_view: BaseView,
+        ViewModel: BaseListView,
+        search_criteria: Any
+) -> None:
+    """Открыть окно поиска."""
+    view = ViewModel(top_view, search_criteria)
+    view.run()

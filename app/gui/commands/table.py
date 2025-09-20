@@ -15,7 +15,7 @@ def get_search_data(
         year: str, month: str, department: str
 ) -> TableSearchSchema:
     """
-    Возвращает данные введенные данные в формате,
+    Возвращает введенные данные в формате,
     используемом для построения табеля.
     """
     return {
@@ -28,7 +28,10 @@ def get_search_data(
 def get_table_days(
         db: Session, data: TableSearchSchema
 ) -> Optional[List[CalendarDay]]:
-    """Принимает год и месяц, возвращает дни месяца из БД."""
+    """
+    Принимает данные в формате, используемом для построения табеля,
+    используя из них год и месяц, возвращает список календарных дней из БД.
+    """
 
     return db.query(CalendarDay).filter(
         and_(

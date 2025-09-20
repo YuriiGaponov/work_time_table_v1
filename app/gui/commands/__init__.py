@@ -10,7 +10,8 @@ from .validators import not_validate_year
 from .views import (
     open_info_view,
     open_modal_view,
-    open_search_view
+    open_search_view,
+    open_table_view
 )
 
 __all__ = [
@@ -20,5 +21,6 @@ __all__ = [
     'open_info_view',
     'open_modal_view',
     'open_search_view',
+    'open_table_view',
     'search_employees'
 ]

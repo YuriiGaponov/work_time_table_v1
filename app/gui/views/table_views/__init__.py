@@ -3,7 +3,7 @@
 с пакетом обработки табелей.
 """
 
-from .table import TableSelectorView, TableView
+from .views import TableSelectorView, TableView
 
 __all__ = [
     'TableSelectorView',

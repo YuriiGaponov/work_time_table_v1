@@ -2,6 +2,11 @@
 Модуль настроек окон для работы с табелями.
 """
 
+import tkinter as tk
+from tkinter import ttk
+from typing import List
+
+from app.calendar.models import CalendarDay
 from app.gui.views.base import BaseConfig
 
 
@@ -10,6 +15,15 @@ class TableViewConfig(BaseConfig):
 
     TITLE: str = 'Табель учета рабочего времени'
     HEAD_LABLE: str = 'Табель учета рабочего времени'
+
+    COLUMN_WIDTH: int = 50
+
+    def configure_tree(tree: ttk.Treeview, columns: List[CalendarDay]) -> None:
+        """Установить настройки области отображения табеля."""
+        for column in columns:
+            tree.column(column, anchor=tk.CENTER,
+                        width=TableViewConfig.COLUMN_WIDTH)
+            tree.heading(column, text=column.day)
 
 
 class TableSelectorViewConfig(BaseConfig):
