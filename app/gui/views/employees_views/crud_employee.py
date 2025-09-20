@@ -9,7 +9,7 @@ from app.gui.commands import (
     search_employees
 )
 from app.gui.views.base import BaseListView
-from app.gui.commands import open_search_view
+from app.gui.commands import open_table_view
 from .config import (
     CreateEmployeeViewConfig,
     SearchEmployeeViewConfig,
@@ -35,7 +35,7 @@ class SearchEmployeeView(CRUDEmployeeBaseView):
 
     def confirm(self):
         """Найти сотрудника."""
-        open_search_view(
+        open_table_view(
             self,
             ShowEmployeeListView,
             search_employees(session, super().confirm())

@@ -30,21 +30,11 @@ def open_info_view(
     view.run()
 
 
-def open_search_view(
-        top_view: BaseView,
-        ViewModel: BaseListView,
-        search_criteria: Any
-) -> None:
-    """Открыть окно поиска."""
-    view = ViewModel(top_view, search_criteria)
-    view.run()
-
-
 def open_table_view(
         top_view: BaseView,
         ViewModel: BaseListView,
         search_criteria: Any
 ) -> None:
-    """Открыть окно поиска."""
+    """Открыть окно, содержащее таблицу/список."""
     view = ViewModel(top_view, search_criteria)
     view.run()
