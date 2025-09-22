@@ -5,14 +5,13 @@
 
 import tkinter as tk
 from tkinter import ttk
-from typing import List
 
-from app.calendar.models import CalendarDay
 from app.db import session
 from app.gui.commands import open_table_view
 from app.gui.commands.table import get_table  # исправить импорт
 from app.gui.views.base import BaseListView, BaseModalView, base_grid
 from .config import TableViewConfig, TableSelectorViewConfig
+from .schemas import TableDataSchema
 
 
 class TableSelectorView(BaseModalView):
@@ -94,15 +93,18 @@ class TableSelectorView(BaseModalView):
 class TableView(BaseListView):
     """Окно отображения табеля."""
 
-    def __init__(self, top_view, items: List[CalendarDay] = None):
+    def __init__(self, top_view, items: TableDataSchema = None):
         super().__init__(top_view, items)
         self.root.title(TableViewConfig.TITLE)
         self.root_head_lable.config(
             text=TableViewConfig.HEAD_LABLE
         )
 
-        columns = [item for item in self.items]
+        columns = TableViewConfig.set_columns(self.items)
         self.tree.config(
             columns=columns
         )
-        TableViewConfig.configure_tree(self.tree, columns)
+        employees = [item for item in self.items['employees']]
+
+        TableViewConfig.configure_columns(self.tree, columns)
+        TableViewConfig.add_employees(self.tree, employees)

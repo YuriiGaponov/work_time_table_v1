@@ -8,7 +8,11 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 
 from app.calendar.models import CalendarDay
-from app.gui.views.table_views.schemas import TableSearchSchema
+from app.employees.models import Employee
+from app.gui.views.table_views.schemas import (
+    TableDataSchema,
+    TableSearchSchema
+)
 
 
 def get_search_data(
@@ -41,5 +45,26 @@ def get_table_days(
     )
 
 
-def get_table(db: Session, year: str, month: str, department: str):
-    return get_table_days(db, get_search_data(year, month, department))
+def get_employees(
+        db: Session, data: TableSearchSchema
+) -> Optional[List[Employee]]:
+    """
+    Принимает данные в формате, используемом для построения табеля,
+    используя из них год и месяц, возвращает список календарных дней из БД.
+    """
+
+    return db.query(Employee).filter(
+        and_(
+            Employee.department == data['department']
+        )
+    )
+
+
+def get_table(
+        db: Session, year: str, month: str, department: str
+) -> TableDataSchema:
+    table_data = get_search_data(year, month, department)
+    return {
+        'table_days': get_table_days(db, table_data),
+        'employees': get_employees(db, table_data)
+    }

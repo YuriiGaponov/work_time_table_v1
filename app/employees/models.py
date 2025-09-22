@@ -25,3 +25,10 @@ class Employee(Base):
         self.surname = surname
         self.department = department
         self.patronymic = patronymic
+
+    def initials(self) -> str:
+        """Возвращает инициалы сотрудника в формате Фамилия И.О."""
+        initials = f'{self.surname} {self.name[0]}.'
+        if self.patronymic:
+            initials += f'{self.patronymic[0]}.'
+        return initials

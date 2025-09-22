@@ -6,8 +6,9 @@ import tkinter as tk
 from tkinter import ttk
 from typing import List
 
-from app.calendar.models import CalendarDay
+from app.employees.models import Employee
 from app.gui.views.base import BaseConfig
+from .schemas import TableDataSchema
 
 
 class TableViewConfig(BaseConfig):
@@ -18,12 +19,32 @@ class TableViewConfig(BaseConfig):
 
     COLUMN_WIDTH: int = 50
 
-    def configure_tree(tree: ttk.Treeview, columns: List[CalendarDay]) -> None:
-        """Установить настройки области отображения табеля."""
-        for column in columns:
+    @classmethod
+    def set_columns(cls, items: TableDataSchema) -> list:
+        """
+        Создает колонки табеля, первая для сотрудников,
+        последующие для каждого дя месяца.
+        """
+        columns = ['employee'] + [item for item in items['table_days']]
+        return columns
+
+    @classmethod
+    def configure_columns(cls, tree: ttk.Treeview, columns: list) -> None:
+        """Установить настройки столбцов табеля."""
+        # Скрываем первый автоматический столбец
+        tree.column("#0", width=0, stretch=tk.NO)
+        # Установить заголовок для первого столбца
+        tree.heading('employee', text='Сотрудник')
+
+        for column in columns[1:]:
             tree.column(column, anchor=tk.CENTER,
-                        width=TableViewConfig.COLUMN_WIDTH)
+                        width=cls.COLUMN_WIDTH)
             tree.heading(column, text=column.day)
+
+    def add_employees(tree: ttk.Treeview, employees: List[Employee]) -> None:
+        """Добавить список сотрудников в область отображения."""
+        for employee in employees:
+            tree.insert("", tk.END, values=(employee.initials()))
 
 
 class TableSelectorViewConfig(BaseConfig):
