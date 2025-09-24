@@ -1,3 +1,8 @@
+"""
+Модели для хранения сведений о днях года,
+о количестве отработанного времени в конкретный день конкретным сотрудником.
+"""
+
 from sqlalchemy import Boolean, Column, Integer, String, UniqueConstraint
 
 from app.db import Base
@@ -24,3 +29,7 @@ class CalendarDay(Base):
         self.month = month
         self.year = year
         self.is_weekend = is_weekend
+
+
+class TableDay(Base):
+    """Класс для хранения информации о рабочем дне сотрудника."""
