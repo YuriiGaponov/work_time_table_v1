@@ -11,6 +11,7 @@ from app.db import Base
 class CalendarDay(Base):
     """Класс для хранения сведений о дне года."""
 
+    id: int = Column(Integer, primary_key=True, autoincrement=True)
     number: int = Column(Integer)
     day: int = Column(Integer)
     month: str = Column(String)
@@ -33,3 +34,5 @@ class CalendarDay(Base):
 
 class TableDay(Base):
     """Класс для хранения информации о рабочем дне сотрудника."""
+
+    id: int = Column(Integer, primary_key=True, autoincrement=True)
