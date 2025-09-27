@@ -17,7 +17,7 @@ class TableViewConfig(BaseConfig):
     TITLE: str = 'Табель учета рабочего времени'
     HEAD_LABLE: str = 'Табель учета рабочего времени'
 
-    COLUMN_WIDTH: int = 50
+    COLUMN_WIDTH: int = 25
 
     @classmethod
     def set_columns(cls, items: TableDataSchema) -> list:
@@ -44,7 +44,7 @@ class TableViewConfig(BaseConfig):
     def add_employees(tree: ttk.Treeview, employees: List[Employee]) -> None:
         """Добавить список сотрудников в область отображения."""
         for employee in employees:
-            tree.insert("", tk.END, values=(employee.initials()))
+            tree.insert("", tk.END, values=(employee.initials(),))
 
 
 class TableSelectorViewConfig(BaseConfig):

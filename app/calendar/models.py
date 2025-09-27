@@ -3,7 +3,10 @@
 о количестве отработанного времени в конкретный день конкретным сотрудником.
 """
 
-from sqlalchemy import Boolean, Column, Integer, String, UniqueConstraint
+from sqlalchemy import (
+    Boolean, Column, ForeignKey, Integer, String, UniqueConstraint
+)
+from sqlalchemy.orm import relationship
 
 from app.db import Base
 
@@ -11,12 +14,17 @@ from app.db import Base
 class CalendarDay(Base):
     """Класс для хранения сведений о дне года."""
 
-    id: int = Column(Integer, primary_key=True, autoincrement=True)
     number: int = Column(Integer)
     day: int = Column(Integer)
     month: str = Column(String)
     year: int = Column(Integer)
     is_weekend: bool = Column(Boolean)
+
+    work_days = relationship(
+        'WorkDay',
+        back_populates='calendar_day',
+        cascade='all, delete-orphan'
+    )
 
     __table_args__ = (
         UniqueConstraint('number', 'day', 'month', 'year', 'is_weekend',
@@ -32,7 +40,21 @@ class CalendarDay(Base):
         self.is_weekend = is_weekend
 
 
-class TableDay(Base):
+class WorkDay(Base):
     """Класс для хранения информации о рабочем дне сотрудника."""
 
-    id: int = Column(Integer, primary_key=True, autoincrement=True)
+    employee_id = Column(Integer, ForeignKey('employee.id'))
+    calendar_day_id = Column(Integer, ForeignKey('calendarday.id'))
+
+    # Количество часов, отработанных за день/ночь.
+    day_worked = Column(Integer)
+    night_worked = Column(Integer)
+
+    employee = relationship(
+        'Employee',
+        back_populates='work_days'
+    )
+    calendar_day = relationship(
+        'CalendarDay',
+        back_populates='work_days'
+    )

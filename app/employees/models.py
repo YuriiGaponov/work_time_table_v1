@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String, UniqueConstraint
+from sqlalchemy import Column, String, UniqueConstraint
+from sqlalchemy.orm import relationship
 
 from app.db import Base
 
@@ -6,11 +7,16 @@ from app.db import Base
 class Employee(Base):
     """Класс для хранения сведений о сотруднике."""
 
-    id: int = Column(Integer, primary_key=True, autoincrement=True)
     name: str = Column(String)
     patronymic: str = Column(String, nullable=True)
     surname: str = Column(String)
     department: str = Column(String)
+
+    work_days = relationship(
+        'WorkDay',
+        back_populates='employee',
+        cascade='all, delete-orphan'
+    )
 
     __table_args__ = (
         UniqueConstraint(
