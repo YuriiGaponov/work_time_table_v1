@@ -4,7 +4,7 @@
 """
 
 from sqlalchemy import (
-    Boolean, Column, ForeignKey, Integer, String, UniqueConstraint
+    Boolean, Column, Integer, String, UniqueConstraint
 )
 from sqlalchemy.orm import relationship
 
@@ -38,23 +38,3 @@ class CalendarDay(Base):
         self.month = month
         self.year = year
         self.is_weekend = is_weekend
-
-
-class WorkDay(Base):
-    """Класс для хранения информации о рабочем дне сотрудника."""
-
-    employee_id = Column(Integer, ForeignKey('employee.id'))
-    calendar_day_id = Column(Integer, ForeignKey('calendarday.id'))
-
-    # Количество часов, отработанных за день/ночь.
-    day_worked = Column(Integer)
-    night_worked = Column(Integer)
-
-    employee = relationship(
-        'Employee',
-        back_populates='work_days'
-    )
-    calendar_day = relationship(
-        'CalendarDay',
-        back_populates='work_days'
-    )

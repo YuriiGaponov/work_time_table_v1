@@ -3,9 +3,9 @@
 """
 
 from .main import save_calendar
-from .models import WorkDay
+from .models import CalendarDay
 
 __all__ = [
+    'CalendarDay',
     'save_calendar',
-    'WorkDay'
 ]
