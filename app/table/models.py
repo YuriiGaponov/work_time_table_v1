@@ -40,7 +40,7 @@
 """
 
 from sqlalchemy import (
-    Column, ForeignKey, Integer
+    Column, ForeignKey, Integer, UniqueConstraint
 )
 from sqlalchemy.orm import relationship
 
@@ -80,6 +80,11 @@ class WorkDay(Base):
     calendar_day = relationship(
         CalendarDay,
         back_populates='work_days'
+    )
+
+    __table_args__ = (
+        UniqueConstraint('employee_id', 'calendar_day_id',
+                         name='uix_employee_calendar_day'),
     )
 
     def __init__(self,
