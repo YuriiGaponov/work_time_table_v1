@@ -1,48 +1,53 @@
 """
-Модуль работы с сущностью «Рабочий день» (WorkDay).
+Модуль работы с записями о рабочих днях сотрудников.
 
-Модуль реализует модель данных для учёта отработанного времени сотрудников,
-представляющую собой связующее звено между сотрудниками и календарными днями.
+Данный модуль реализует модель `WorkDay` — связующее звено
+между сотрудниками (`Employee`) и календарными днями
+(`CalendarDay`). Задача — хранить данные об отработанных
+дневных/ночных часах для каждого сотрудника в конкретный
+день.
 
-Основные функции модуля:
-    * хранение информации о количестве отработанных дневных и ночных часов;
-    * обеспечение связи между таблицами сотрудников (Employee) и календарных
-    дней (CalendarDay);
-    * предоставление структуры для учёта рабочего времени в рамках системы.
+Структура модуля:
+* Модель `WorkDay` (наследник `Base`).
+* Валидаторы данных.
+* Конструктор с предварительной валидацией.
 
-Используемые внешние зависимости:
-    * SQLAlchemy — для построения ORM-модели;
-    * app.calendar.CalendarDay — сущность календарного дня;
-    * app.db.Base — базовый класс для моделей SQLAlchemy;
-    * app.employees.Employee — сущность сотрудника.
+Ключевые особенности:
+* **Уникальность записей.** Запрет на дублирование пары
+  «сотрудник — календарный день» (`UniqueConstraint`).
+* **Валидация часов.** Проверка на целое число, неотрицательность,
+  максимум 24 часа.
+* **Валидация ID.** Поля `employee_id`, `calendar_day_id` —
+  положительные целые числа.
+* **Суммарная проверка.** Сумма дневных и ночных часов ≤ 24.
 
-Ключевые компоненты модуля:
-    * класс `WorkDay` — основная модель, описывающая рабочий день сотрудника.
+Используемые зависимости:
+* `SQLAlchemy` — работа с БД и ORM.
+* `Pydantic` — обработка ошибок валидации.
+* Модели: `Employee` (`app.employees`), `CalendarDay`
+  (`app.calendar`), `Base` (`app.db`).
 
-Типичное использование:
-    1. Создание записи о рабочем дне:
-        ```python
-        work_day = WorkDay(
-            employee_id=1,
-            calendar_day_id=42,
-            day_worked=8,
-            night_worked=2
-        )
-        ```
-    2. Доступ к связанным данным:
-        ```python
-        # Получение сотрудника по записи рабочего дня
-        employee = work_day.employee
+Пример использования:
 
-        # Получение календарного дня по записи рабочего дня
-        calendar_day = work_day.calendar_day
-        ```
+from app.workdays import WorkDay
+
+workday = WorkDay(
+    employee_id=1,
+    calendar_day_id=365,
+    day_worked=8,
+    night_worked=0
+)
+
+employee = workday.employee
+calendar_day = workday.calendar_day
 """
+
 
 from sqlalchemy import (
     Column, ForeignKey, Integer, UniqueConstraint
 )
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, validates
+from pydantic import ValidationError
 
 from app.calendar import CalendarDay
 from app.db import Base
@@ -87,6 +92,30 @@ class WorkDay(Base):
                          name='uix_employee_calendar_day'),
     )
 
+    @validates('day_worked', 'night_worked')
+    def validate_work_hours(self, key, value):
+        """Валидация количества отработанных часов."""
+        if not isinstance(value, int):
+            raise ValidationError(f"Значение {key} должно быть целым числом.")
+        if value < 0:
+            raise ValidationError(
+                f"Значение {key} не может быть отрицательным."
+            )
+        if value > 24:
+            raise ValidationError(
+                f"Значение {key} не может превышать 24 часа."
+            )
+        return value
+
+    @validates('employee_id', 'calendar_day_id')
+    def validate_ids(self, key, value):
+        """Валидация ID-полей."""
+        if not isinstance(value, int):
+            raise ValidationError(f"Значение {key} должно быть целым числом.")
+        if value <= 0:
+            raise ValidationError(f"Значение {key} должно быть положительным.")
+        return value
+
     def __init__(self,
                  employee_id: int,
                  calendar_day_id: int,
@@ -104,3 +133,14 @@ class WorkDay(Base):
         self.calendar_day_id = calendar_day_id
         self.day_worked = day_worked
         self.night_worked = night_worked
+
+        # Вызываем валидацию при инициализации
+        self._validate()
+
+    def _validate(self):
+        """Комплексная валидация объекта."""
+        # Проверяем суммарное время работы за день
+        if (self.day_worked + self.night_worked) > 24:
+            raise ValidationError(
+                "Сумма отработанных часов не может превышать 24."
+            )
