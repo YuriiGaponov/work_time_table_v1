@@ -1,7 +1,12 @@
+from typing import List, Tuple
+
 from .models import CalendarDay
 
 
-def save_calendar(session, downloaded_calendar: list):
+def save_calendar(
+        session,
+        downloaded_calendar: List[Tuple[int, int, str, int, bool]]
+):
     """
     Сохраняет в БД сведения о днях года, полученные в ходе парсинга календаря,
     как объекты класса CalendarDay.
