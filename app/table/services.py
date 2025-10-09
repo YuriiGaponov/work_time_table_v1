@@ -12,16 +12,16 @@ class WorkDayService:
     Отвечает за создание и управление записями о рабочем времени сотрудников.
     """
 
-    def __init__(self, session: Session):
-        """
-        Инициализирует сервис с заданной сессией SQLAlchemy.
+    # def __init__(self, session: Session):
+    #     """
+    #     Инициализирует сервис с заданной сессией SQLAlchemy.
 
-        :param session: сессия SQLAlchemy для взаимодействия с базой данных.
-        """
-        self.session = session
+    #     :param session: сессия SQLAlchemy для взаимодействия с базой данных.
+    #     """
+    #     self.session = session
 
     def create_work_day(
-        self,
+        # self,
         employee_id: int,
         calendar_day_id: int,
         day_worked: int = 0,
@@ -47,6 +47,6 @@ class WorkDayService:
             day_worked=day_worked,
             night_worked=night_worked
         )
-        self.session.add(new_work_day)
-        self.session.commit()
+        # self.session.add(new_work_day)
+        # self.session.commit()
         return new_work_day
