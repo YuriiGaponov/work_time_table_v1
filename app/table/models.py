@@ -65,8 +65,10 @@ class WorkDay(Base):
         employee_id (int): идентификатор сотрудника, связанный с записью.
         calendar_day_id (int): идентификатор календарного дня, к которому
             относится запись рабочего дня.
-        day_worked (int): количество отработанных дневных часов.
-        night_worked (int): количество отработанных ночных часов.
+        day_worked (Optional[int]): количество отработанных дневных часов
+            или None, если информация отсутствует.
+        night_worked (Optional[int]): количество отработанных ночных часов
+            или None, если информация отсутствует.
         employee (Employee): объект сотрудника, связанный через отношение ORM.
         calendar_day (CalendarDay): объект календарного дня, связанный через
             отношение ORM.
@@ -75,8 +77,8 @@ class WorkDay(Base):
     employee_id = Column(Integer, ForeignKey('employee.id'))
     calendar_day_id = Column(Integer, ForeignKey('calendarday.id'))
 
-    day_worked = Column(Integer)
-    night_worked = Column(Integer)
+    day_worked = Column(Integer, nullable=True)
+    night_worked = Column(Integer, nullable=True)
 
     employee = relationship(
         Employee,
@@ -95,6 +97,8 @@ class WorkDay(Base):
     @validates('day_worked', 'night_worked')
     def validate_work_hours(self, key, value):
         """Валидация количества отработанных часов."""
+        if value is None:
+            return value
         if not isinstance(value, int):
             raise ValidationError(f"Значение {key} должно быть целым числом.")
         if value < 0:
@@ -138,9 +142,23 @@ class WorkDay(Base):
         self._validate()
 
     def _validate(self):
-        """Комплексная валидация объекта."""
-        # Проверяем суммарное время работы за день
-        if (self.day_worked + self.night_worked) > 24:
+        """
+        Выполняет комплексную валидацию объекта, проверяя корректность
+        заполненных данных.
+
+        Основные проверки:
+        - Валидация суммарного рабочего времени (дневное + ночное), если
+            имеется отработанное дневное и ночное время.
+        - Проверяет, что общее количество часов не превышает 24 в сутки
+
+        При обнаружении нарушений выбрасывает исключение ValidationError
+        с соответствующим сообщением об ошибке.
+        """
+        if (
+            self.day_worked
+            and self.night_worked
+            and (self.day_worked + self.night_worked) > 24
+        ):
             raise ValidationError(
                 "Сумма отработанных часов не может превышать 24."
             )

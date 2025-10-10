@@ -12,7 +12,7 @@ from app.gui.commands import (
     open_info_view
 )
 from app.gui.views.base import BaseModalView, BaseErrorView, base_grid
-from app.srvices import create_table_for_downloaded_calendar
+from app.srvices import TableService
 from .config import IncorrectYearViewConfig, YearSelectorViewConfig
 
 
@@ -54,7 +54,7 @@ class YearSelectorView(BaseModalView):
             open_info_view(self, IncorrectYearView, validation)
         else:
             get_calendar(year)
-            create_table_for_downloaded_calendar(year)
+            TableService.create_workdays_for_downloaded_calendar(year)
             self.root.destroy()
 
     def clean(self):

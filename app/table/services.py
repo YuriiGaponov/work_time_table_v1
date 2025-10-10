@@ -2,7 +2,8 @@
 Модуль размещения логики операций с объектами типа WorkDay.
 """
 
-from sqlalchemy.orm import Session
+from typing import Optional
+
 from .models import WorkDay
 
 
@@ -12,34 +13,28 @@ class WorkDayService:
     Отвечает за создание и управление записями о рабочем времени сотрудников.
     """
 
-    # def __init__(self, session: Session):
-    #     """
-    #     Инициализирует сервис с заданной сессией SQLAlchemy.
-
-    #     :param session: сессия SQLAlchemy для взаимодействия с базой данных.
-    #     """
-    #     self.session = session
-
     def create_work_day(
-        # self,
         employee_id: int,
         calendar_day_id: int,
-        day_worked: int = 0,
-        night_worked: int = 0
+        day_worked: Optional[int] = None,
+        night_worked: Optional[int] = None
     ) -> WorkDay:
         """
-        Создаёт новую запись о рабочем дне сотрудника.
+        Создает новую запись о рабочем дне сотрудника.
 
-        :param employee_id: ID сотрудника, для которого создаётся запись.
-        :param calendar_day_id: ID календарного дня, к которому относится
-            запись.
-        :param day_worked: количество отработанных дневных часов
-            (по умолчанию — 0).
-        :param night_worked: количество отработанных ночных часов
-            (по умолчанию — 0).
-        :return: объект `WorkDay`, представляющий созданную запись.
-        :raises: исключения, связанные с операциями с базой данных
-            (например, `IntegrityError` при нарушении ограничений БД).
+        Параметры:
+        employee_id (int): ID сотрудника, для которого создается запись
+        calendar_day_id (int): ID календарного дня
+        day_worked (Optional[int]): Количество отработанных дневных часов
+        night_worked (Optional[int]): Количество отработанных ночных часов
+
+        Возвращает:
+        WorkDay: Созданный объект записи рабочего дня
+
+        Примечание:
+        Поля day_worked и night_worked являются опциональными и могут быть
+        установлены позже, если информация о рабочем времени становится
+        доступной позднее.
         """
         new_work_day = WorkDay(
             employee_id=employee_id,
@@ -47,6 +42,5 @@ class WorkDayService:
             day_worked=day_worked,
             night_worked=night_worked
         )
-        # self.session.add(new_work_day)
-        # self.session.commit()
+
         return new_work_day

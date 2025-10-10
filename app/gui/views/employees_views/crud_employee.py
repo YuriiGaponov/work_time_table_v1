@@ -10,6 +10,7 @@ from app.gui.commands import (
 )
 from app.gui.views.base import BaseListView
 from app.gui.commands import open_table_view
+from app.srvices import TableService
 from .config import (
     CreateEmployeeViewConfig,
     SearchEmployeeViewConfig,
@@ -77,8 +78,13 @@ class CreateEmployeeView(CRUDEmployeeBaseView):
 
     def confirm(self):
         """Создать сотрудника."""
+
+        employee_data = super().confirm()
+
         create_employee(
             self,
-            super().confirm(),
+            employee_data,
             EmployeeErrorView
         )
+
+        TableService.create_workdays_for_new_employee(employee_data)
