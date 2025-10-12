@@ -12,7 +12,7 @@ from app.gui.commands import (
     open_info_view
 )
 from app.gui.views.base import BaseModalView, BaseErrorView, base_grid
-from app.srvices import TableService
+from app.table import TableService
 from .config import IncorrectYearViewConfig, YearSelectorViewConfig
 
 

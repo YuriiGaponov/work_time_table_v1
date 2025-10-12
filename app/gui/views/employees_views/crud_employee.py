@@ -10,7 +10,7 @@ from app.gui.commands import (
 )
 from app.gui.views.base import BaseListView
 from app.gui.commands import open_table_view
-from app.srvices import TableService
+from app.table import TableService
 from .config import (
     CreateEmployeeViewConfig,
     SearchEmployeeViewConfig,

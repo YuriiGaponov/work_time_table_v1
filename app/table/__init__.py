@@ -1,4 +1,8 @@
 from .models import WorkDay
-from .services import WorkDayService
+from .services import TableService, WorkDayService
 
-__all__ = ['WorkDay', 'WorkDayService']
+__all__ = [
+    'TableService',
+    'WorkDay',
+    'WorkDayService'
+]

@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2" pages="3">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5" pages="3">
   <diagram name="схема приложения" id="4TbhmdWZxxpxIqHuFGvc">
     <mxGraphModel dx="2255" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -33,17 +33,6 @@
         </mxCell>
         <mxCell id="UPNmAf1wYI5z3taSuM9a-10" value="GUI" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="540" y="455" width="130" height="130" as="geometry" />
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-  <diagram id="Fta-pbylXhw4JzOk2zXw" name="реализация">
-    <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="_MPJYR8TZe5fGK642DqX-1" value="app_parser" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="80" y="90" width="130" height="130" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -125,6 +114,80 @@
             <mxPoint x="360" y="490" as="sourcePoint" />
             <mxPoint x="440" y="230" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="1P8jC9MDuaq3d_tCqarO" name="схема табеля">
+    <mxGraphModel dx="2253" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="EArwJxTiQEX628TmAYI3-17" value="Табель за месяц года сотрудников отдела" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-270" y="60" width="1400" height="820" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-18" value="Отдел" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-17">
+          <mxGeometry x="20" y="30" width="260" height="770" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-32" value="Employee" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-18">
+          <mxGeometry x="40" y="280" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-33" value="Employee" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-18">
+          <mxGeometry x="40" y="450" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-43" value="Employee" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-18">
+          <mxGeometry x="40" y="110" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-22" value="Месяц" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="90" width="1090" height="770" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-23" value="День месяца" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-22">
+          <mxGeometry x="10" y="30" width="200" height="730" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-28" value="WorkDay" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-23">
+          <mxGeometry x="20" y="80" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-34" value="WorkDay" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-23">
+          <mxGeometry x="20" y="250" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-38" value="WorkDay" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-23">
+          <mxGeometry x="20" y="415" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-24" value="День месяца" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-22">
+          <mxGeometry x="240" y="30" width="200" height="730" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-29" value="WorkDay" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-24">
+          <mxGeometry x="20" y="80" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-35" value="WorkDay" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-24">
+          <mxGeometry x="20" y="250" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-39" value="WorkDay" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-24">
+          <mxGeometry x="20" y="415" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-25" value="День месяца" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-22">
+          <mxGeometry x="460" y="30" width="200" height="730" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-30" value="WorkDay" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-25">
+          <mxGeometry x="20" y="80" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-36" value="WorkDay" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-25">
+          <mxGeometry x="20" y="250" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-40" value="WorkDay" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-25">
+          <mxGeometry x="20" y="415" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-26" value="День месяца" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-22">
+          <mxGeometry x="680" y="30" width="200" height="730" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-31" value="WorkDay" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-26">
+          <mxGeometry x="20" y="80" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-37" value="WorkDay" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-26">
+          <mxGeometry x="20" y="250" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="EArwJxTiQEX628TmAYI3-41" value="WorkDay" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="EArwJxTiQEX628TmAYI3-26">
+          <mxGeometry x="20" y="415" width="160" height="100" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
