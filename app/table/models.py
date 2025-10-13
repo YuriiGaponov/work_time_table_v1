@@ -46,8 +46,9 @@ calendar_day = workday.calendar_day
 from sqlalchemy import (
     Column, ForeignKey, Integer, UniqueConstraint
 )
-from sqlalchemy.orm import relationship, validates
+from sqlalchemy.orm import Session, relationship, validates
 from pydantic import ValidationError
+from typing import List
 
 from app.calendar import CalendarDay
 from app.db import Base
@@ -165,7 +166,70 @@ class WorkDay(Base):
 
 
 class Table:
-    def __init__(self, year: int, month: str, department: str):
+    """
+    Класс для получения данных табеля сотрудников определенного отдела
+    за определенный период.
+
+    Отвечает за инициализацию и получение данных сотрудников и календарных дней
+    для указанного отдела, года и месяца.
+    """
+
+    def __init__(
+            self, session: Session, year: str, month: str, department: str
+    ):
+        """
+        Инициализирует объект Table.
+
+        Параметры:
+        session (Session): объект сессии базы данных для выполнения запросов
+        year (str): год в строковом формате
+        month (str): месяц в строковом формате
+        department (str): название отдела
+
+        Атрибуты класса:
+        self.session (Session): сохраненная сессия базы данных
+        self.year (str): сохраненный год
+        self.month (str): сохраненный месяц
+        self.department (str): сохраненное название отдела
+        """
+
+        self.session = session
         self.year = year
         self.month = month
         self.department = department
+
+    def employees(self) -> List[Employee]:
+        """
+        Возвращает список сотрудников указанного отдела.
+
+        Метод выполняет запрос к базе данных для получения всех сотрудников,
+        принадлежащих к заданному отделу. Используется фильтрация по полю
+        department модели Employee.
+
+        Returns:
+            List[Employee]: список объектов Employee, соответствующих фильтру
+                по отделу
+        """
+
+        return self.session.query(Employee).filter(
+            Employee.department == self.department
+        ).all()
+
+    def calendar_days(self) -> List[CalendarDay]:
+        """
+        Возвращает список календарных дней для указанного месяца и года.
+
+        Метод выполняет запрос к базе данных для получения всех календарных
+        дней, соответствующих указанным году и месяцу. При этом:
+        * год преобразуется из строкового формата в целочисленный
+        * месяц используется в исходном строковом формате
+
+        Returns:
+            List[CalendarDay]: список объектов CalendarDay, соответствующих
+            указанным параметрам года и месяца
+        """
+
+        return self.session.query(CalendarDay).filter(
+            CalendarDay.year == int(self.year),
+            CalendarDay.month == self.month
+        ).all()
