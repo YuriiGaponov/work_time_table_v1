@@ -162,3 +162,10 @@ class WorkDay(Base):
             raise ValidationError(
                 "Сумма отработанных часов не может превышать 24."
             )
+
+
+class Table:
+    def __init__(self, year: int, month: str, department: str):
+        self.year = year
+        self.month = month
+        self.department = department

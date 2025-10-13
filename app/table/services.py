@@ -29,6 +29,7 @@
 3. Все операции выполняются с учетом целостности данных
 """
 
+from sqlalchemy.orm import Session
 from typing import List, Optional
 
 from app.calendar import CalendarDay
@@ -176,3 +177,42 @@ class TableService:
                 )
             session.add(workday)
         session.commit()
+
+
+# получить из окна ввода:
+# - год
+# - месяц
+# - отдел
+
+# сделать выборку employees: List[Employee]
+calendar_days: List[CalendarDay] = session.query(
+            CalendarDay
+        ).filter(CalendarDay.year == int(year)).all()
+# сделать выборку calendar_days: List[CalendarDay]
+
+def get_work_days_by_department_and_period(
+    session: Session,
+    year: int,
+    month: str,
+    department: str
+) -> List[WorkDay]:
+    """
+    Возвращает список рабочих дней для указанного отдела за заданный период.
+
+    :param session: сессия базы данных
+    :param year: год
+    :param month: месяц (например, 'January', 'February')
+    :param department: название отдела
+    :return: список объектов WorkDay
+    """
+    return (
+        session.query(WorkDay)
+        .join(CalendarDay, WorkDay.calendar_day_id == CalendarDay.id)
+        .join(Employee, WorkDay.employee_id == Employee.id)
+        .filter(
+            CalendarDay.year == year,
+            CalendarDay.month == month,
+            Employee.department == department
+        )
+        .all()
+    )
