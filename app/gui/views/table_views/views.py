@@ -7,6 +7,7 @@ import tkinter as tk
 from tkinter import ttk
 
 from app.db import session
+from app.table import Table
 from app.gui.commands import open_table_view
 from app.gui.commands.table import get_table  # исправить импорт
 from app.gui.views.base import BaseListView, BaseModalView, base_grid
@@ -72,15 +73,23 @@ class TableSelectorView(BaseModalView):
         base_grid(self.open_tale_button, 3, 0, TableSelectorViewConfig)
         base_grid(self.clean_button, 3, 1, TableSelectorViewConfig)
 
+    # def open_table(self):  # для отладки
+    #     """Открывает табель с выбранными параметрами."""
+    #     open_table_view(
+    #         self, TableView, get_table(
+    #             session,
+    #             self.year_entry.get(),
+    #             self.month_entry.get(),
+    #             self.department_entry.get()
+    #         )
+    #     )
     def open_table(self):  # для отладки
         """Открывает табель с выбранными параметрами."""
-        open_table_view(
-            self, TableView, get_table(
-                session,
-                self.year_entry.get(),
-                self.month_entry.get(),
-                self.department_entry.get()
-            )
+        table = Table(
+            session,
+            self.year_entry.get(),
+            self.month_entry.get(),
+            self.department_entry.get()
         )
 
     def clean(self):
@@ -90,21 +99,27 @@ class TableSelectorView(BaseModalView):
         self.department_entry.delete(0, tk.END)
 
 
-class TableView(BaseListView):
+# class TableView(BaseListView):
+#     """Окно отображения табеля."""
+
+#     def __init__(self, top_view, items: TableDataSchema = None):
+#         super().__init__(top_view, items)
+#         self.root.title(TableViewConfig.TITLE)
+#         self.root_head_lable.config(
+#             text=TableViewConfig.HEAD_LABLE
+#         )
+
+#         columns = TableViewConfig.set_columns(self.items)
+#         self.tree.config(
+#             columns=columns
+#         )
+#         employees = [item for item in self.items['employees']]
+
+#         TableViewConfig.configure_columns(self.tree, columns)
+#         TableViewConfig.add_employees(self.tree, employees)
+
+class TableView(BaseModalView):
     """Окно отображения табеля."""
 
-    def __init__(self, top_view, items: TableDataSchema = None):
-        super().__init__(top_view, items)
-        self.root.title(TableViewConfig.TITLE)
-        self.root_head_lable.config(
-            text=TableViewConfig.HEAD_LABLE
-        )
-
-        columns = TableViewConfig.set_columns(self.items)
-        self.tree.config(
-            columns=columns
-        )
-        employees = [item for item in self.items['employees']]
-
-        TableViewConfig.configure_columns(self.tree, columns)
-        TableViewConfig.add_employees(self.tree, employees)
+    def __init__(self, top_view):
+        super().__init__(top_view)
