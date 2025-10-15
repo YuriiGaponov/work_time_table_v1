@@ -6,9 +6,9 @@ import tkinter as tk
 from tkinter import ttk
 from typing import List
 
+from app.calendar import CalendarDay
 from app.employees.models import Employee
 from app.gui.views.base import BaseConfig
-from .schemas import TableDataSchema
 
 
 class TableViewConfig(BaseConfig):
@@ -20,12 +20,12 @@ class TableViewConfig(BaseConfig):
     COLUMN_WIDTH: int = 25
 
     @classmethod
-    def set_columns(cls, items: TableDataSchema) -> list:
+    def set_columns(cls, calendar_days: List[CalendarDay]) -> list:
         """
         Создает колонки табеля, первая для сотрудников,
         последующие для каждого дя месяца.
         """
-        columns = ['employee'] + [item for item in items['table_days']]
+        columns = ['employee'] + [day for day in calendar_days]
         return columns
 
     @classmethod
